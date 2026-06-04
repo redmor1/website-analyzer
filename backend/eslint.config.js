@@ -1,9 +1,12 @@
 // @ts-check
-
+import node from "eslint-plugin-n"
 import { defineConfig } from "eslint/config"
 import eslint from "@eslint/js"
 import tseslint from "typescript-eslint"
 import perfectionist from "eslint-plugin-perfectionist"
+import sonarjs from "eslint-plugin-sonarjs"
+import promise from "eslint-plugin-promise"
+import unicorn from "eslint-plugin-unicorn"
 
 export default defineConfig(
   {
@@ -20,5 +23,17 @@ export default defineConfig(
       },
     },
   },
-  perfectionist.configs["recommended-natural"]
+  node.configs["flat/recommended-module"],
+  perfectionist.configs["recommended-natural"],
+  promise.configs["flat/recommended"],
+  unicorn.configs["recommended"],
+  {
+    plugins: {
+      sonarjs,
+    },
+    rules: {
+      "sonarjs/cognitive-complexity": "error",
+      "sonarjs/no-identical-expressions": "error",
+    },
+  },
 )
