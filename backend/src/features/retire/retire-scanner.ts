@@ -3,10 +3,11 @@ import path from "node:path"
 
 import { config } from "../../config.js"
 import { execPromise } from "../../utils/exec.js"
+import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runRetireScan(url: string) {
   try {
-    const safeFileName = `${encodeURIComponent(url)}-retire.json`
+    const safeFileName = getSafeFilename(url, "retire")
 
     const hostFolder = config.reportFilePath
     const filePath = path.resolve(config.reportFilePath, safeFileName)
@@ -14,8 +15,8 @@ export async function runRetireScan(url: string) {
     // Container path for linux (forward slashes)
     const containerFolder = "/app/reports"
 
-    // TODO: Hardcoded image value, figure out way to import it dynamically
-    const command = `docker run --rm --mount type=bind,source=${hostFolder},target=${containerFolder} sha256:18e1c99d1a39f698d04505eb274dea01ffd4b0910f21a9f347f02838892bbd7c --sbom-file ${containerFolder}/${safeFileName} ${url}`
+    // TODO: check if pull=always could lead to vulnerabilities
+    const command = `docker run --rm --mount type=bind,source=${hostFolder},target=${containerFolder} ghcr.io/redmor1/retire-site-scanner-modified:latest --sbom-file ${containerFolder}/${safeFileName} ${url}`
 
     console.log(`Starting Retire scan for: ${url}`)
 

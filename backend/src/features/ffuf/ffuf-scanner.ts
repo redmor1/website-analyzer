@@ -2,10 +2,11 @@ import path from "node:path"
 
 import { config } from "../../config.js"
 import { execPromise } from "../../utils/exec.js"
+import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runFfufScan(url: string, wordlistName: "common.txt") {
   try {
-    const safeFileName = `${encodeURIComponent(url)}-ffuf.json`
+    const safeFileName = getSafeFilename(url, "ffuf")
 
     // ffuf requires the exact keyword 'FUZZ' where the payload should be injected.
     // Ensure there is exactly one slash between the domain and FUZZ.

@@ -2,6 +2,7 @@ import path from "node:path"
 
 import { config } from "../../config.js"
 import { execPromise } from "../../utils/exec.js"
+import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runNmapScan(url: string) {
   try {
@@ -15,7 +16,7 @@ export async function runNmapScan(url: string) {
     }
 
     // 2. Define the XML output file
-    const safeFileName = `${encodeURIComponent(targetHost)}-nmap.xml`
+    const safeFileName = getSafeFilename(url, "nmap")
 
     // 3. Define Host and Container Paths
     const hostFolder = config.reportFilePath

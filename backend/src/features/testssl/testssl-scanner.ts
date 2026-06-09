@@ -2,6 +2,7 @@ import path from "node:path"
 
 import { config } from "../../config.js"
 import { execPromise } from "../../utils/exec.js"
+import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runTestSslScan(url: string) {
   // KEEP IN MIND
@@ -9,7 +10,7 @@ export async function runTestSslScan(url: string) {
   // Ensure your overall API timeout settings in your Node.js application account for this duration.
 
   try {
-    // 1. Extract raw hostname from the URL
+    // Extract raw hostname from the URL
     let targetHost = url
     try {
       targetHost = new URL(url).hostname
@@ -18,13 +19,13 @@ export async function runTestSslScan(url: string) {
       // Fallback if the user input is already a raw domain
     }
 
-    const safeFileName = `${encodeURIComponent(targetHost)}-ssl-report.json`
+    const safeFileName = getSafeFilename(url, "testssl")
 
-    // 2. Define Host and Container Paths
+    // Define Host and Container Paths
     const hostFolder = config.reportFilePath
     const containerFolder = "/app/reports"
 
-    // 3. Construct the Docker command
+    // Construct the Docker command
     // --jsonfile tells testssl to log output in structured JSON to our mounted folder
     // --warnings off prevents terminal formatting data from muddying logs
     const command = `docker run --rm \
@@ -36,7 +37,7 @@ export async function runTestSslScan(url: string) {
 
     console.log(`Starting TLS/SSL audit for: ${targetHost}`)
 
-    // 4. Execute the command
+    // Execute the command
     const { stdout, stderr } = await execPromise(command, {
       maxBuffer: 1024 * 1024 * 10, // 10MB buffer for verbose cipher readouts
     })

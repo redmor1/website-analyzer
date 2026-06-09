@@ -2,10 +2,11 @@ import path from "node:path"
 
 import { config } from "../../config.js"
 import { execPromise } from "../../utils/exec.js"
+import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runNucleiScan(url: string, cacheTemplates: boolean) {
   try {
-    const safeFileName = `${encodeURIComponent(url)}-nuclei.json`
+    const safeFileName = getSafeFilename(url, "nuclei")
 
     const hostFolder = config.reportFilePath
     const containerFolder = "/app/reports"
