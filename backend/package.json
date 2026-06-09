@@ -19,6 +19,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -26,15 +27,10 @@
       "onFail": "download"
     }
   },
-  "type": "module",
-  "imports": {
-    "#services/*": "./dist/services/*.js",
-    "#repository/*": "./dist/repository/*.js",
-    "#controllers/*": "./dist/controllers/*.js",
-    "#*": "./dist/*.js"
-  },
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "retire-site-scanner": "github:redmor1/retire-site-scanner-modified",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
