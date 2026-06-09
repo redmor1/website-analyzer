@@ -14,7 +14,7 @@ export async function runFfufScan(url: string, wordlistName: "common.txt") {
 
     // 2. Define Host Paths
     const hostFolder = config.reportFilePath
-    const hostWordlistsFolder = path.resolve("./features/ffuf/wordlists")
+    const hostWordlistsFolder = path.resolve("./src/features/ffuf/wordlists")
 
     // Docker container paths
     const containerFolder = "/app/reports"
@@ -45,3 +45,5 @@ export async function runFfufScan(url: string, wordlistName: "common.txt") {
     console.error("ffuf scan failed:", error)
   }
 }
+
+await runFfufScan("https://dxrpdupes.com", "common.txt")

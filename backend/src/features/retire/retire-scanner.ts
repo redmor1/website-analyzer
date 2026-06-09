@@ -29,7 +29,6 @@ export async function runRetireScan(url: string) {
     )
 
     const report = await readFile(filePath, "utf8")
-    return JSON.parse(report)
   } catch (error) {
     console.log(error)
     // TODO: implement some sort of logging system
