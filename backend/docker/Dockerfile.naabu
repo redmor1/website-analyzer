@@ -1,0 +1,7 @@
+FROM alpine:latest
+RUN apk add --no-cache git go libpcap-dev
+RUN go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+FROM alpine:latest
+RUN apk add --no-cache libpcap
+COPY --from=0 /go/bin/naabu /usr/local/bin/naabu
+ENTRYPOINT ["naabu"]

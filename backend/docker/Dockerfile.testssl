@@ -1,0 +1,15 @@
+FROM alpine:latest
+
+# Install dependencies required by the testssl.sh bash script
+RUN apk add --no-cache \
+    bash \
+    openssl \
+    bind-tools \
+    coreutils \
+    git \
+    procps
+
+# Clone the official repository directly
+RUN git clone --depth 1 https://github.com/drwetter/testssl.sh.git /opt/testssl
+
+ENTRYPOINT ["/opt/testssl/testssl.sh"]

@@ -1,0 +1,6 @@
+FROM alpine:latest
+RUN apk add --no-cache git go
+RUN go install github.com/projectdiscovery/katana/cmd/katana@latest
+FROM alpine:latest
+COPY --from=0 /go/bin/katana /usr/local/bin/katana
+ENTRYPOINT ["katana"]

@@ -1,0 +1,13 @@
+# Stage 1: Build the binary from the official source
+FROM golang:alpine AS builder
+RUN apk add --no-cache git
+# Clone and build directly from the official repository
+RUN go install github.com/ffuf/ffuf/v2@latest
+
+# Stage 2: Create the minimal execution image
+FROM alpine:latest
+RUN apk add --no-cache ca-certificates
+# Copy the compiled binary from the builder stage
+COPY --from=builder /go/bin/ffuf /usr/local/bin/ffuf
+# Set the entrypoint to the binary
+ENTRYPOINT ["ffuf"]
