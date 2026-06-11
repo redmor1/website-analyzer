@@ -46,6 +46,7 @@ function ScannerForm() {
           className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-4"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required={sendEmail}
         />
       )}
     </form>
