@@ -1,8 +1,11 @@
 import express from "express"
 import zod from "zod"
 
+import { ScannerEnum, type Scanner } from "./types/types.ts"
+
 import { config } from "./config.js"
 import { runRetireScan } from "./features/retire/retire-scanner.js"
+import { mergeReports, runScans } from "./features/orchestrator/orchestrator.ts"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
@@ -15,13 +18,26 @@ app.get("/", (request, response) => {
 })
 
 const scanRequestSchema = zod.object({
-  websiteUrl: zod.url(),
+  scanners: zod
+    .array(ScannerEnum)
+    .min(1, "You must select at least one scanner"),
+
+  websiteUrl: zod.url({
+    hostname: zod.regexes.domain,
+    normalize: true, // lots of i/o logic depends on normalized urls
+    protocol: /^https?$/,
+  }),
 })
 
 app.post("/", jsonParser, async (request, response) => {
   try {
     const parsedRequest = scanRequestSchema.parse(request.body)
-    const report = await runRetireScan(parsedRequest.websiteUrl)
+    console.log(parsedRequest)
+    await runScans(parsedRequest.websiteUrl, parsedRequest.scanners)
+    const report = await mergeReports(
+      parsedRequest.websiteUrl,
+      parsedRequest.scanners,
+    )
     return response.status(200).send(report)
   } catch (error) {
     console.error(error)

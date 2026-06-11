@@ -15,7 +15,7 @@ export async function runWapitiScan(url: string) {
     // Docker stuff + bind mount
     const command = `docker run --rm \
       --mount type=bind,source="${hostFolder}",target=${containerFolder} \
-      wapiti-local:latest -u ${url} -f json -o ${containerFolder}/${safeFileName}`
+      wapiti-local:latest -u ${url} --max-links-per-page 50 --tasks 4 --max-links-per-page 50  -f json  -o ${containerFolder}/${safeFileName}`
 
     console.log(`Starting Wapiti scan for: ${url}`)
 

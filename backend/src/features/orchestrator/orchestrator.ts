@@ -5,6 +5,12 @@ import type { Report, Scanner } from "../../types/types.js"
 
 import { config } from "../../config.js"
 import { getSafeFilename } from "../../utils/filenames.js"
+import { runFfufScan } from "../ffuf/ffuf-scanner.ts"
+import { runNmapScan } from "../nmap/nmap-scanner.ts"
+import { runNucleiScan } from "../nuclei/nuclei-scanner.ts"
+import { runRetireScan } from "../retire/retire-scanner.ts"
+import { runTestSslScan } from "../testssl/testssl-scanner.ts"
+import { runWapitiScan } from "../wapiti/wapiti-scanner.ts"
 
 export async function mergeReports(
   url: string,
@@ -30,4 +36,44 @@ export async function mergeReports(
     }
   }
   return report
+}
+
+export async function runScans(url: string, tools: string[]) {
+  try {
+    // iterate through each scanner and run it
+    for (const tool of tools) {
+      switch (tool) {
+        case "ffuf": {
+          await runFfufScan(url, "common.txt")
+          break
+        }
+        case "nmap": {
+          await runNmapScan(url)
+          break
+        }
+        case "nuclei": {
+          await runNucleiScan(url, false)
+          break
+        }
+        case "retire": {
+          await runRetireScan(url)
+          break
+        }
+        case "testssl": {
+          await runTestSslScan(url)
+          break
+        }
+        case "wapiti": {
+          await runWapitiScan(url)
+          break
+        }
+        default: {
+          break
+        }
+      }
+    }
+  } catch (error) {
+    console.error(error)
+    throw new Error("Scan execution failed", { cause: error })
+  }
 }

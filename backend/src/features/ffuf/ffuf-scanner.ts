@@ -45,5 +45,3 @@ export async function runFfufScan(url: string, wordlistName: "common.txt") {
     console.error("ffuf scan failed:", error)
   }
 }
-
-await runFfufScan("https://dxrpdupes.com", "common.txt")
