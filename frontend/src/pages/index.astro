@@ -1,11 +1,11 @@
 ---
 import "@/styles/global.css";
 import Layout from "@/layouts/Layout.astro";
-import HeroSection from "@/components/hero-section";
+import HeroSection from "@/components/hero-section.astro";
 import ScanResultsSection from "@/components/scan-results-section";
 ---
 
 <Layout>
   <HeroSection />
-  <ScanResultsSection />
+  <ScanResultsSection client:load />
 </Layout>
