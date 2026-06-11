@@ -2,3 +2,4 @@ allowBuilds:
   esbuild: true
   puppeteer: true
   retire-site-scanner: true
+  retire-site-scanner@https://codeload.github.com/redmor1/retire-site-scanner-modified/tar.gz/86a38c8f91e6f2f0bbe684467c51b750e95adbcb: true

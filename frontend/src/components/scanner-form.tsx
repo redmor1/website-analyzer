@@ -1,15 +1,22 @@
 import { useState } from "react";
+import { scan } from "@/store/scanStore";
+import { postScan } from "@/api/postScan";
 
 function ScannerForm() {
   const [url, setUrl] = useState("");
   const [sendEmail, setSendEmail] = useState(false);
   const [email, setEmail] = useState("");
 
-  function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log(
       `Submitting stuff:\n url: ${url}\n sendEmail: ${sendEmail} \n email: ${email}`,
     );
+    const scanResult = await postScan({
+      scanners: ["retire"],
+      websiteUrl: url,
+    });
+    scan.set(scanResult);
   }
 
   return (

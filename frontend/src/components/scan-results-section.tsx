@@ -2,10 +2,15 @@ import VulnerabilityTable from "./vulnerability-table";
 import vulnerabilitiesData from "../data/vulnerability-test-data.json";
 
 import { useEffect, useRef, useState } from "react";
+import { useStore } from "@nanostores/react";
+import { scan } from "@/store/scanStore";
 
 function ScanResultsSection() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const tableRef = useRef<HTMLDivElement>(null);
+
+  // nano store for sharing scan results
+  const $scan = useStore(scan);
 
   useEffect(() => {
     if (isOpen && tableRef.current) {
@@ -52,10 +57,7 @@ function ScanResultsSection() {
         >
           {/* noise overlay */}
           <div className="pointer-events-none absolute inset-0 bg-[url('/noise.svg')] opacity-10"></div>
-          <VulnerabilityTable
-            vulnerabilities={vulnerabilitiesData}
-            client:load
-          />
+          <VulnerabilityTable vulnerabilities={$scan.retire.vulnerabilities} />
         </div>
       )}
     </section>

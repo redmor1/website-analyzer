@@ -1,18 +1,25 @@
+import type { Request, Response } from "express"
+
+import cors from "cors"
 import express from "express"
 import zod from "zod"
 
-import { ScannerEnum, type Scanner } from "./types/types.ts"
-
 import { config } from "./config.js"
-import { runRetireScan } from "./features/retire/retire-scanner.js"
-import { mergeReports, runScans } from "./features/orchestrator/orchestrator.ts"
+import { mergeReports, runScans } from "./features/orchestrator/orchestrator.js"
+import { ScannerEnum } from "./types/types.js"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
-
 const jsonParser = express.json({ limit: "100kb", strict: true })
 
-app.get("/", (request, response) => {
+const corsOptions = {
+  origin: "http://localhost:4321",
+}
+
+// middleware
+app.use(cors(corsOptions))
+
+app.get("/", (request: Request, response: Response) => {
   response.send("Hello World!")
   console.log("Response sent")
 })

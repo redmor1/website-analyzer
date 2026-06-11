@@ -13,9 +13,11 @@ export async function runWapitiScan(url: string) {
     const containerFolder = "/app/reports"
 
     // Docker stuff + bind mount
+    // (--tasks 4) concurrent tasks limited at 4 to be polite
+    // (--max-links-per-page 50) so in pages with lots of links it doesn't explode
     const command = `docker run --rm \
       --mount type=bind,source="${hostFolder}",target=${containerFolder} \
-      wapiti-local:latest -u ${url} --max-links-per-page 50 --tasks 4 --max-links-per-page 50  -f json  -o ${containerFolder}/${safeFileName}`
+      wapiti-local:latest -u ${url} --max-links-per-page 50 --tasks 4 --max-links-per-page 50 -f json  -o ${containerFolder}/${safeFileName}`
 
     console.log(`Starting Wapiti scan for: ${url}`)
 

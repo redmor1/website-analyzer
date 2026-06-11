@@ -5,12 +5,12 @@ import type { Report, Scanner } from "../../types/types.js"
 
 import { config } from "../../config.js"
 import { getSafeFilename } from "../../utils/filenames.js"
-import { runFfufScan } from "../ffuf/ffuf-scanner.ts"
-import { runNmapScan } from "../nmap/nmap-scanner.ts"
-import { runNucleiScan } from "../nuclei/nuclei-scanner.ts"
-import { runRetireScan } from "../retire/retire-scanner.ts"
-import { runTestSslScan } from "../testssl/testssl-scanner.ts"
-import { runWapitiScan } from "../wapiti/wapiti-scanner.ts"
+import { runFfufScan } from "../ffuf/ffuf-scanner.js"
+import { runNmapScan } from "../nmap/nmap-scanner.js"
+import { runNucleiScan } from "../nuclei/nuclei-scanner.js"
+import { runRetireScan } from "../retire/retire-scanner.js"
+import { runTestSslScan } from "../testssl/testssl-scanner.js"
+import { runWapitiScan } from "../wapiti/wapiti-scanner.js"
 
 export async function mergeReports(
   url: string,
