@@ -1,3 +1,7 @@
+---
+import Navbar from "@/components/navbar.astro";
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +12,8 @@
     <meta name="generator" content={Astro.generator} />
     <title>website analyzer</title>
   </head>
-  <body>
+  <body class="bg-stone-950 font-body text-stone-100">
+    <Navbar />
     <slot />
   </body>
 </html>

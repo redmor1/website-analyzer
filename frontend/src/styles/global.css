@@ -1,1 +1,38 @@
 @import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+
+@theme {
+  --breakpoint-xs: 480px;
+  --font-display: "Space Grotesk Variable", "sans-serif";
+  --font-body: "Space Grotesk Variable", "sans-serif";
+  --color-accent: var(--color-orange-500);
+  --animate-marquee-vertical: marquee-vertical 16s linear infinite;
+
+  @keyframes marquee-vertical {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* button w/ cursor pointer */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer !important;
+  }
+  ::selection {
+    @apply bg-accent text-white;
+  }
+}
