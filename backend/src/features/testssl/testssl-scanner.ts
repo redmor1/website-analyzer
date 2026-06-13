@@ -1,7 +1,7 @@
 import path from "node:path"
 
 import { config } from "../../config.js"
-import { execPromise } from "../../utils/exec.js"
+import { spawnPromise } from "../../utils/exec.js"
 import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runTestSslScan(url: string) {
@@ -25,22 +25,24 @@ export async function runTestSslScan(url: string) {
     const hostFolder = config.reportFilePath
     const containerFolder = "/app/reports"
 
-    // Construct the Docker command
     // --jsonfile tells testssl to log output in structured JSON to our mounted folder
     // --warnings off prevents terminal formatting data from muddying logs
-    const command = `docker run --rm \
-      --mount type=bind,source="${hostFolder}",target=${containerFolder} \
-      testssl-local:latest \
-      --warnings off \
-      --jsonfile ${containerFolder}/${safeFileName} \
-      ${targetHost}`
+    const commandArguments = [
+      "run",
+      "--rm",
+      "--mount",
+      `type=bind,source=${hostFolder},target=${containerFolder}`,
+      "testssl-local:latest",
+      "--warnings",
+      "off",
+      "--jsonfile",
+      `${containerFolder}/${safeFileName}`,
+      targetHost,
+    ]
 
     console.log(`Starting TLS/SSL audit for: ${targetHost}`)
 
-    // Execute the command
-    const { stdout, stderr } = await execPromise(command, {
-      maxBuffer: 1024 * 1024 * 10, // 10MB buffer for verbose cipher readouts
-    })
+    await spawnPromise("docker", commandArguments)
 
     console.log(
       `Scan complete. JSON saved to ${path.join(hostFolder, safeFileName)}`,

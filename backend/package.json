@@ -30,6 +30,7 @@
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "fast-xml-parser": "^5.8.0",
     "retire-site-scanner": "github:redmor1/retire-site-scanner-modified",
     "zod": "^4.4.3"
   },

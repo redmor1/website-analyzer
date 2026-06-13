@@ -1,12 +1,13 @@
+import { XMLParser } from "fast-xml-parser"
+import { readFile, unlink, writeFile } from "node:fs/promises"
 import path from "node:path"
 
 import { config } from "../../config.js"
-import { execPromise } from "../../utils/exec.js"
+import { spawnPromise } from "../../utils/exec.js"
 import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runNmapScan(url: string) {
   try {
-    // 1. Nmap requires a raw hostname or IP. Extract it from the URL.
     let targetHost = url
     try {
       targetHost = new URL(url).hostname
@@ -15,30 +16,64 @@ export async function runNmapScan(url: string) {
       // If URL parsing fails, assume the user already passed a raw domain or IP
     }
 
-    // 2. Define the XML output file
-    const safeFileName = getSafeFilename(url, "nmap")
+    const JsonFilename = getSafeFilename(url, "nmap")
 
-    // 3. Define Host and Container Paths
+    // Create a temp XML filename so i can parse it to .json later
+    const temporaryXmlFilename = `temp-${String(Date.now())}-nmap.xml`
+
     const hostFolder = config.reportFilePath
     const containerFolder = "/app/reports"
 
-    // 4. Construct the Docker command
-    const command = `docker run --rm \
-      --mount type=bind,source="${hostFolder}",target=${containerFolder} \
-      nmap-local:latest \
-      -sV -F --min-rate 300 \
-      -oX ${containerFolder}/${safeFileName} \
-      ${targetHost}`
+    const finalJsonFilePath = path.join(hostFolder, JsonFilename)
+    const temporaryXmlFilePath = path.join(hostFolder, temporaryXmlFilename)
 
+    const commandArguments = [
+      "run",
+      "--rm",
+      "--mount",
+      `type=bind,source=${hostFolder},target=${containerFolder}`,
+      "nmap-local:latest",
+      "-sV",
+      "-F",
+      "--min-rate",
+      "300",
+      "-oX",
+      `${containerFolder}/${temporaryXmlFilename}`, // instruct nmap to use the temp xml file so we can convert it later to .json
+      targetHost,
+    ]
     console.log(`Starting nmap scan for: ${targetHost}`)
 
-    // 5. Execute the command
-    const { stdout, stderr } = await execPromise(command, {
-      maxBuffer: 1024 * 1024 * 10,
-    })
+    // running nmap, will parse
+    try {
+      await spawnPromise("docker", commandArguments)
+
+      const xmlData = await readFile(temporaryXmlFilePath, "utf8")
+
+      // parse xml file to js object
+      const parser = new XMLParser({
+        attributeNamePrefix: "",
+        ignoreAttributes: false,
+      })
+      const jsonObject = parser.parse(xmlData) as Record<string, unknown>
+      console.log("Parsed Nmap XML successfully", jsonObject)
+      await writeFile(finalJsonFilePath, JSON.stringify(jsonObject))
+
+      await unlink(temporaryXmlFilePath)
+    } catch (error) {
+      console.error("Nmap scan or conversion failed:", error)
+
+      // Attempt cleanup if it crashed mid-execution
+      try {
+        await unlink(temporaryXmlFilePath)
+      } catch {
+        // Ignore cleanup errors
+      }
+
+      throw error
+    }
 
     console.log(
-      `Scan complete. XML saved to ${path.join(hostFolder, safeFileName)}`,
+      `Scan complete. nmap JSON saved to ${path.join(hostFolder, JsonFilename)}`,
     )
   } catch (error) {
     console.error("Nmap scan failed:", error)

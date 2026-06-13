@@ -2,11 +2,10 @@ import type { Request, Response } from "express"
 
 import cors from "cors"
 import express from "express"
-import zod from "zod"
 
 import { config } from "./config.js"
 import { mergeReports, runScans } from "./features/orchestrator/orchestrator.js"
-import { ScannerEnum } from "./types/types.js"
+import { scanRequestSchema } from "./schemas/schemas.js"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
@@ -22,18 +21,6 @@ app.use(cors(corsOptions))
 app.get("/", (request: Request, response: Response) => {
   response.send("Hello World!")
   console.log("Response sent")
-})
-
-const scanRequestSchema = zod.object({
-  scanners: zod
-    .array(ScannerEnum)
-    .min(1, "You must select at least one scanner"),
-
-  websiteUrl: zod.url({
-    hostname: zod.regexes.domain,
-    normalize: true, // lots of i/o logic depends on normalized urls
-    protocol: /^https?$/,
-  }),
 })
 
 app.post("/", jsonParser, async (request, response) => {

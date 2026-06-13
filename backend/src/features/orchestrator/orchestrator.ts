@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises"
+import { readFile, unlink } from "node:fs/promises"
 import path from "node:path"
 
 import type { Report, Scanner } from "../../types/types.js"
@@ -28,10 +28,30 @@ export async function mergeReports(
       // if readfile fails
       // type casting since the error can come from readFile
       const error_ = error as NodeJS.ErrnoException
+
+      // if file doesn't exist, skip to next scanner
       if (error_.code === "ENOENT") continue
 
-      // if json.parse fails
-      console.log(error)
+      // if json.parse fails (means the file is corrupted or something)
+      if (error instanceof SyntaxError) {
+        console.error(
+          `Corrupted JSON file detected for ${scanner}. Deleting...`,
+        )
+        try {
+          // tries to delete it
+          await unlink(filePath)
+        } catch (unlinkError) {
+          console.error(
+            `Failed to delete corrupted file: ${filePath}`,
+            unlinkError,
+          )
+        }
+        // skip to next scanner so successful reports can still be returned
+        continue
+      }
+
+      // for unexpected critical errors, throw to stop execution
+      console.error(`Unexpected error processing ${scanner}:`, error)
       throw error
     }
   }
