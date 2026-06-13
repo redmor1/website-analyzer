@@ -6,7 +6,7 @@ import { getSafeFilename } from "../../utils/filenames.js"
 
 export async function runWapitiScan(url: string) {
   try {
-    const safeFileName = getSafeFilename(url, "wapiti", "json")
+    const safeFileName = getSafeFilename(url, "wapiti")
 
     // Define hosts and container paths
     const hostFolder = config.reportFilePath
