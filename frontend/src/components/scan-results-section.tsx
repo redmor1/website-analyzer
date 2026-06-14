@@ -4,13 +4,14 @@ import vulnerabilitiesData from "../data/vulnerability-test-data.json";
 import { useEffect, useRef, useState } from "react";
 import { useStore } from "@nanostores/react";
 import { scan } from "@/store/scanStore";
+import { withStrictMode } from "@/utils/withStrictMode";
 
 function ScanResultsSection() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const tableRef = useRef<HTMLDivElement>(null);
-
   // nano store for sharing scan results
   const $scan = useStore(scan);
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const tableRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen && tableRef.current) {
@@ -19,6 +20,20 @@ function ScanResultsSection() {
       });
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    // We use the vanilla .listen() method on the store itself, not the React hook.
+    const unsubscribe = scan.listen((storeValue) => {
+      if (storeValue?.retire?.vulnerabilities?.length > 0) {
+        setIsOpen(true);
+      }
+    });
+
+    // Cleanup the listener when the component unmounts
+    return () => {
+      unsubscribe();
+    };
+  }, []); // Empty dependency array! We only set up the listener once.
 
   function handleOpenTable() {
     setIsOpen(!isOpen);
@@ -38,8 +53,8 @@ function ScanResultsSection() {
             handleOpenTable();
           }}
         >
-          Show scan results
-        </button>{" "}
+          {isOpen ? "Close scan results" : "Show scan results"}
+        </button>
         <button
           className="w-fit bg-linear-to-br from-orange-400 to-accent px-4 py-2 text-xl tracking-tighter"
           onClick={() => {
@@ -64,4 +79,4 @@ function ScanResultsSection() {
   );
 }
 
-export default ScanResultsSection;
+export default withStrictMode(ScanResultsSection);
