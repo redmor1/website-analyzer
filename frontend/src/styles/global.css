@@ -68,3 +68,15 @@
     outline-offset: 2px;
   }
 }
+
+@utility hitbox-extend {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+
+    /* pulls the edges of the invisible ::after button outwards by 2 spacing units  */
+    inset: calc(var(--spacing) * -2.2);
+  }
+}

@@ -64,7 +64,7 @@ function ScannerForm() {
           onChange={(e) => setUrl(e.target.value)}
           required
         />{" "}
-        <button type="submit" className="bg-accent px-4 py-4">
+        <button type="submit" className="hitbox-extend bg-accent px-4 py-4">
           SCAN
         </button>
       </div>
@@ -80,7 +80,7 @@ function ScannerForm() {
                 type="checkbox"
                 checked={scanner.isChecked}
                 onChange={handleCheckScanner}
-                className="form-checkbox"
+                className="hitbox-extend form-checkbox"
               />
               <label htmlFor={scanner.name} className="cursor-pointer">
                 {scanner.name}
@@ -95,7 +95,7 @@ function ScannerForm() {
           type="checkbox"
           checked={sendEmail}
           onChange={() => setSendEmail(!sendEmail)}
-          className="form-checkbox"
+          className="hitbox-extend form-checkbox"
         />
         <label htmlFor="email-checkbox" className="cursor-pointer">
           Send report to email
