@@ -4,6 +4,7 @@ import { config } from "../../config.js"
 import { spawnPromise } from "../../utils/exec.js"
 import { getSafeFilename } from "../../utils/filenames.js"
 
+// TODO: check if it works on real site, since adding -- argument flag to stop argument injection
 export async function runTestSslScan(url: string) {
   // KEEP IN MIND
   // VPS Execution Time: testssl.sh tests hundreds of distinct cipher combinations and handshake protocols manually. Because of this, it can take 2 to 4 minutes to complete a full run against a single target.
@@ -37,6 +38,7 @@ export async function runTestSslScan(url: string) {
       "off",
       "--jsonfile",
       `${containerFolder}/${safeFileName}`,
+      "--",
       targetHost,
     ]
 

@@ -32,6 +32,7 @@ app.post("/", jsonParser, async (request, response) => {
       parsedRequest.websiteUrl,
       parsedRequest.scanners,
     )
+    console.log("Successfully merged reports. Sending response.")
     return response.status(200).send(report)
   } catch (error) {
     console.error(error)

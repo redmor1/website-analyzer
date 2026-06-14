@@ -40,6 +40,7 @@ export async function mergeReports(
         try {
           // tries to delete it
           await unlink(filePath)
+          console.log(`Successfully deleted corrupted file: ${filePath}`)
         } catch (unlinkError) {
           console.error(
             `Failed to delete corrupted file: ${filePath}`,

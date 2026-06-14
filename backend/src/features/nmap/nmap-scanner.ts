@@ -6,6 +6,7 @@ import { config } from "../../config.js"
 import { spawnPromise } from "../../utils/exec.js"
 import { getSafeFilename } from "../../utils/filenames.js"
 
+
 export async function runNmapScan(url: string) {
   try {
     let targetHost = url
@@ -39,6 +40,7 @@ export async function runNmapScan(url: string) {
       "300",
       "-oX",
       `${containerFolder}/${temporaryXmlFilename}`, // instruct nmap to use the temp xml file so we can convert it later to .json
+      "--",
       targetHost,
     ]
     console.log(`Starting nmap scan for: ${targetHost}`)
