@@ -18,18 +18,26 @@ function ScannerForm() {
   const [sendEmail, setSendEmail] = useState(false);
   const [email, setEmail] = useState("");
   const [scanners, setScanners] = useState(SCANNERS);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [apiKey, setApiKey] = useState("");
 
   async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log(
       `Submitting stuff:\n url: ${url}\n sendEmail: ${sendEmail} \n email: ${email}`,
     );
-    const scanResult = await postScan({
-      // get all checked scanners and return only the string name
-      scanners: scanners.filter((s) => s.isChecked).map((s) => s.name),
-      websiteUrl: url,
-      email: email,
-    });
+    const scanResult = await postScan(
+      {
+        // get all checked scanners and return only the string name
+        scanners: scanners.filter((s) => s.isChecked).map((s) => s.name),
+        websiteUrl: url,
+        email: email,
+      },
+      apiKey,
+      username,
+      password,
+    );
     scan.set(scanResult);
   }
 
@@ -87,6 +95,38 @@ function ScannerForm() {
               </label>
             </div>
           ))}
+        </div>
+      </div>
+      <div className="mb-8">
+        <p>Temporary stuff for debugging VPS</p>
+        <div className="mb-4 flex w-full gap-2 flex-col">
+          <input
+            className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
+            id="username"
+            type="text"
+            placeholder="Nginx Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
+            id="password"
+            type="password"
+            placeholder="Nginx Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
+            id="api-key"
+            type="password"
+            placeholder="Express API Key"
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            required
+          />
         </div>
       </div>
       <div className="flex w-full items-center gap-2">

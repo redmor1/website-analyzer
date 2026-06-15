@@ -5,14 +5,16 @@ import express from "express"
 
 import { config } from "./config.js"
 import { mergeReports, runScans } from "./features/orchestrator/orchestrator.js"
+import { checkApiKey } from "./middlewares/api-key.js"
 import { scanRequestSchema } from "./schemas/schemas.js"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
+const FRONTEND_URL = String(process.env.FRONTEND_URL) || "http://localhost:4321"
 const jsonParser = express.json({ limit: "100kb", strict: true })
 
 const corsOptions = {
-  origin: "http://localhost:4321",
+  origin: FRONTEND_URL,
 }
 
 // middleware
@@ -23,7 +25,7 @@ app.get("/", (request: Request, response: Response) => {
   console.log("Response sent")
 })
 
-app.post("/", jsonParser, async (request, response) => {
+app.post("/", checkApiKey, jsonParser, async (request, response) => {
   try {
     const parsedRequest = scanRequestSchema.parse(request.body)
     console.log(parsedRequest)
