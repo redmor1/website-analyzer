@@ -9,7 +9,7 @@ export async function runObservatoryScan(url: string) {
   try {
     let targetHost = url
     try {
-      targetHost = new URL(url).hostname
+      targetHost = new URL(url).host
     } catch (error) {
       console.error(error)
     }

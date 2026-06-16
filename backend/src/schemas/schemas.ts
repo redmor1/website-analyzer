@@ -25,3 +25,10 @@ export const scanResponseSchema = zod.object({
   }),
   scanners: zod.array(ScannerEnum).min(1, "No scanners detected"),
 })
+
+export const hostSchema = zod
+  .string()
+  .regex(
+    /^[a-zA-Z0-9.-]+(:\d+)?$/,
+    "Invalid host format. Only alphanumeric, hyphens, periods, and ports are allowed.",
+  )

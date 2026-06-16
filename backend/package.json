@@ -11,7 +11,8 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest --watch"
   },
   "engines": {
     "node": ">=24.14.1"
@@ -23,7 +24,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "^11.1.2",
+      "version": "11.1.2",
       "onFail": "download"
     }
   },
@@ -31,7 +32,7 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "fast-xml-parser": "^5.8.0",
-    "retire-site-scanner": "github:redmor1/retire-site-scanner-modified",
+    "retire-site-scanner": "github:redmor1/retire-site-scanner-modified#86a38c8f91e6f2f0bbe684467c51b750e95adbcb",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -49,6 +50,7 @@
     "prettier": "^3.8.3",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.1"
+    "typescript-eslint": "^8.60.1",
+    "vitest": "^4.1.9"
   }
 }

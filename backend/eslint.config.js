@@ -36,4 +36,11 @@ export default defineConfig(
       "sonarjs/no-identical-expressions": "error",
     },
   },
+  // override specific rules for node plugin
+  {
+    files: ["**/*.test.ts", "**/*.spec.ts", "**/tests/**/*"],
+    rules: {
+      "n/no-unpublished-import": "off",
+    },
+  },
 )

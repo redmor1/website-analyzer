@@ -5,8 +5,8 @@ import express from "express"
 
 import { config } from "./config.js"
 import { mergeReports, runScans } from "./features/orchestrator/orchestrator.js"
-import { checkApiKey } from "./middlewares/api-key.js"
 import { scanRequestSchema } from "./schemas/schemas.js"
+import { validateTargetUrl } from "./utils/url-validation.js"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
@@ -25,19 +25,25 @@ app.get("/", (request: Request, response: Response) => {
   console.log("Response sent")
 })
 
-app.post("/", checkApiKey, jsonParser, async (request, response) => {
+app.post("/", jsonParser, async (request, response) => {
   try {
+    // Validate request shape
     const parsedRequest = scanRequestSchema.parse(request.body)
-    console.log(parsedRequest)
-    await runScans(parsedRequest.websiteUrl, parsedRequest.scanners)
-    const report = await mergeReports(
-      parsedRequest.websiteUrl,
-      parsedRequest.scanners,
-    )
+
+    // Deep validation for command injection & SSRF
+    const safeUrl = await validateTargetUrl(parsedRequest.websiteUrl)
+
+    await runScans(safeUrl, parsedRequest.scanners)
+    const report = await mergeReports(safeUrl, parsedRequest.scanners)
     console.log("Successfully merged reports. Sending response.")
     return response.status(200).send(report)
   } catch (error) {
     console.error(error)
+
+    if (error instanceof Error && error.name === "ZodError") {
+      return response.status(400).send(error.message)
+    }
+
     return response.status(500).send("Internal Server Error")
   }
 })
