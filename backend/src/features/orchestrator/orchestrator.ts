@@ -5,12 +5,7 @@ import type { Report, Scanner } from "../../types/types.js"
 
 import { config } from "../../config.js"
 import { getSafeFilename } from "../../utils/filenames.js"
-import { runFfufScan } from "../ffuf/ffuf-scanner.js"
-import { runNmapScan } from "../nmap/nmap-scanner.js"
-import { runNucleiScan } from "../nuclei/nuclei-scanner.js"
 import { runRetireScan } from "../retire/retire-scanner.js"
-import { runTestSslScan } from "../testssl/testssl-scanner.js"
-import { runWapitiScan } from "../wapiti/wapiti-scanner.js"
 
 export async function mergeReports(
   url: string,
@@ -64,31 +59,20 @@ export async function runScans(url: string, tools: string[]) {
     // iterate through each scanner and run it
     for (const tool of tools) {
       switch (tool) {
-        case "ffuf": {
-          await runFfufScan(url, "common.txt")
-          break
-        }
-        case "nmap": {
-          await runNmapScan(url)
-          break
-        }
-        case "nuclei": {
-          await runNucleiScan(url, false)
+        case "observatory": {
+          // await runObservatoryScan(url)
           break
         }
         case "retire": {
           await runRetireScan(url)
           break
         }
-        case "testssl": {
-          await runTestSslScan(url)
-          break
-        }
-        case "wapiti": {
-          await runWapitiScan(url)
+        case "wappalyzergo": {
+          // await runWappalyzergoScan(url)
           break
         }
         default: {
+          console.warn(`Scanner ${tool} is disabled for passive scanning mode.`)
           break
         }
       }
