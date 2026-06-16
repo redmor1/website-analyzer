@@ -25,8 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: "./frontend" 
-
+  BUILD_PATH: "./frontend"
 
 jobs:
   build:
@@ -56,22 +55,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-          cache: 'pnpm'
-          cache-dependency-path: 'frontend/pnpm-lock.yaml'
+          cache: "pnpm"
+          cache-dependency-path: "frontend/pnpm-lock.yaml"
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
-        env:
-          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL}}
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
+        env:
+          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL}}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
