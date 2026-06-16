@@ -1,0 +1,7 @@
+FROM golang:alpine AS builder
+RUN go install -v github.com/webklex/wappalyzer@main
+
+FROM alpine:latest
+# Rename the binary so the entrypoint matches your orchestrator naming
+COPY --from=builder /go/bin/wappalyzer /usr/local/bin/wappalyzergo
+ENTRYPOINT ["wappalyzergo"]

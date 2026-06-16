@@ -5,7 +5,9 @@ import type { Report, Scanner } from "../../types/types.js"
 
 import { config } from "../../config.js"
 import { getSafeFilename } from "../../utils/filenames.js"
+import { runObservatoryScan } from "../observatory/observatory-scanner.js"
 import { runRetireScan } from "../retire/retire-scanner.js"
+import { runWappalyzergoScan } from "../wappalyzergo/wappalyzergo-scanner.js"
 
 export async function mergeReports(
   url: string,
@@ -60,7 +62,7 @@ export async function runScans(url: string, tools: string[]) {
     for (const tool of tools) {
       switch (tool) {
         case "observatory": {
-          // await runObservatoryScan(url)
+          await runObservatoryScan(url)
           break
         }
         case "retire": {
@@ -68,11 +70,11 @@ export async function runScans(url: string, tools: string[]) {
           break
         }
         case "wappalyzergo": {
-          // await runWappalyzergoScan(url)
+          await runWappalyzergoScan(url)
           break
         }
         default: {
-          console.warn(`Scanner ${tool} is disabled for passive scanning mode.`)
+          console.warn(`Scanner ${tool} is disabled for passive scanning mode or doesn't exist.`)
           break
         }
       }
