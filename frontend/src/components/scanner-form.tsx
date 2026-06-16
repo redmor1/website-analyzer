@@ -6,11 +6,13 @@ import { withStrictMode } from "@/utils/withStrictMode";
 // TODO: link with zod types
 const SCANNERS = [
   { name: "retire", isChecked: true },
-  { name: "wapiti", isChecked: true },
-  { name: "nuclei", isChecked: false },
-  { name: "ffuf", isChecked: false },
-  { name: "nmap", isChecked: false },
-  { name: "testssl", isChecked: false },
+  { name: "observatory", isChecked: false },
+  { name: "wappalyzergo", isChecked: false },
+  // { name: "wapiti", isChecked: true },
+  // { name: "nuclei", isChecked: false },
+  // { name: "ffuf", isChecked: false },
+  // { name: "nmap", isChecked: false },
+  // { name: "testssl", isChecked: false },
 ];
 
 function ScannerForm() {
@@ -78,7 +80,7 @@ function ScannerForm() {
       </div>
       <div className="mb-8">
         <h2 className="mb-2 border-b-2 border-b-accent text-lg">
-          Scanners to run
+          Scanners to run (only passive scanners for VPS)
         </h2>
         <div className="grid grid-cols-2 gap-x-6 gap-y-4">
           {scanners.map((scanner) => (
@@ -99,7 +101,7 @@ function ScannerForm() {
       </div>
       <div className="mb-8">
         <p>Temporary stuff for debugging VPS</p>
-        <div className="mb-4 flex w-full gap-2 flex-col">
+        <div className="mb-4 flex w-full flex-col gap-2">
           <input
             className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
             id="username"
