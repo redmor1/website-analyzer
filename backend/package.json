@@ -1,5 +1,5 @@
 {
-  "name": "website-analyzer-backend",
+  "name": "@website-analyzer/backend",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -33,7 +33,8 @@
     "express": "^5.2.1",
     "fast-xml-parser": "^5.8.0",
     "retire-site-scanner": "github:redmor1/retire-site-scanner-modified#86a38c8f91e6f2f0bbe684467c51b750e95adbcb",
-    "zod": "^4.4.3"
+    "zod": "^4.4.3",
+    "@website-analyzer/shared": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

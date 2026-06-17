@@ -1,6 +1,6 @@
-import dns from "node:dns/promises"
 
-import { hostSchema } from "../schemas/schemas.js"
+import { hostSchema } from "@website-analyzer/shared"
+import dns from "node:dns/promises"
 
 export async function validateTargetUrl(inputUrl: string): Promise<string> {
   const parsedUrl = new URL(inputUrl)

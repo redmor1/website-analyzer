@@ -4,18 +4,18 @@ import { API_URL } from "./config";
 export async function postScan(
   body: object,
   apiKey: string,
-  username: string,
-  password: string,
+  // username: string,
+  // password: string,
 ) {
   // encode to base64
-  const credentials = btoa(`${username}:${password}`);
+  // const credentials = btoa(`${username}:${password}`);
   try {
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "x-api-key": apiKey,
-        Authorization: `Basic ${credentials}`,
+        // Authorization: `Basic ${credentials}`,
       },
       body: JSON.stringify(body),
     });

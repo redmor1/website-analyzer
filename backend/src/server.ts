@@ -1,11 +1,11 @@
 import type { Request, Response } from "express"
 
+import { scanRequestSchema } from "@website-analyzer/shared"
 import cors from "cors"
 import express from "express"
 
 import { config } from "./config.js"
 import { mergeReports, runScans } from "./features/orchestrator/orchestrator.js"
-import { scanRequestSchema } from "./schemas/schemas.js"
 import { validateTargetUrl } from "./utils/url-validation.js"
 
 const app = express()
@@ -31,10 +31,13 @@ app.post("/", jsonParser, async (request, response) => {
     const parsedRequest = scanRequestSchema.parse(request.body)
 
     // Deep validation for command injection & SSRF
-    const safeUrl = await validateTargetUrl(parsedRequest.websiteUrl)
+    // const safeUrl = await validateTargetUrl(parsedRequest.websiteUrl)
 
-    await runScans(safeUrl, parsedRequest.scanners)
-    const report = await mergeReports(safeUrl, parsedRequest.scanners)
+    await runScans(parsedRequest.websiteUrl, parsedRequest.scanners)
+    const report = await mergeReports(
+      parsedRequest.websiteUrl,
+      parsedRequest.scanners,
+    )
     console.log("Successfully merged reports. Sending response.")
     return response.status(200).send(report)
   } catch (error) {
