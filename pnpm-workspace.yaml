@@ -1,4 +1,10 @@
+packages:
+  - "frontend"
+  - "backend"
+  - "shared"
+
 allowBuilds:
   esbuild: true
   puppeteer: true
   retire-site-scanner: true
+  sharp: true

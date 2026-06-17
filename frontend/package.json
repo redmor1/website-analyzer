@@ -1,5 +1,5 @@
 {
-  "name": "website-analyzer-frontend",
+  "name": "@website-analyzer/frontend",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -22,7 +22,9 @@
     "nanostores": "^1.3.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "zod": "^4.4.3",
+    "@website-analyzer/shared": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -1,7 +1,7 @@
+import type { Report, Scanner } from "@website-analyzer/shared"
+
 import { readFile, unlink } from "node:fs/promises"
 import path from "node:path"
-
-import type { Report, Scanner } from "../../types/types.js"
 
 import { config } from "../../config.js"
 import { getSafeFilename } from "../../utils/filenames.js"

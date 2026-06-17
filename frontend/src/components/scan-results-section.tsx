@@ -1,82 +1,116 @@
-import VulnerabilityTable from "./vulnerability-table";
-import vulnerabilitiesData from "../data/vulnerability-test-data.json";
-
 import { useEffect, useRef, useState } from "react";
 import { useStore } from "@nanostores/react";
 import { scan } from "@/store/scanStore";
 import { withStrictMode } from "@/utils/withStrictMode";
+import RetireTable from "./tables/retire-table";
+import type { RetireVulnerability } from "@/types/types";
+
+// import WappalyzerTable from "./wappalyzer-table";
+// import ObservatoryTable from "./observatory-table";
 
 function ScanResultsSection() {
-  // nano store for sharing scan results
   const $scan = useStore(scan);
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const tableRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Extract the names of the scanners that returned data
+  const availableScanners = Object.keys($scan || {}).filter(
+    (key) => Object.keys($scan[key as key_of_scan] || {}).length > 0,
+  );
 
   useEffect(() => {
-    if (isOpen && tableRef.current) {
-      tableRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    // We use the vanilla .listen() method on the store itself, not the React hook.
     const unsubscribe = scan.listen((storeValue) => {
-      if (storeValue?.retire?.vulnerabilities?.length > 0) {
+      const keys = Object.keys(storeValue || {});
+      if (keys.length > 0) {
         setIsOpen(true);
+        // Default to the first available scanner tab when opened
+        setActiveTab(keys[0]);
       }
     });
 
-    // Cleanup the listener when the component unmounts
-    return () => {
-      unsubscribe();
-    };
-  }, []); // Empty dependency array! We only set up the listener once.
+    return () => unsubscribe();
+  }, []);
 
-  function handleOpenTable() {
-    setIsOpen(!isOpen);
+  function handleTabChange(tabName: string) {
+    setActiveTab(tabName);
+    // Force the view back to the top of the results section
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   }
 
-  // TODO: implement download of json file
-  function handleDownloadJSON() {
-    console.log("downloaded dude");
+  function renderActiveTable() {
+    switch (activeTab) {
+      case "retire":
+        return (
+          <RetireTable
+            vulnerabilities={$scan.retire as RetireVulnerability[]}
+          />
+        );
+      case "wappalyzergo":
+        // return <WappalyzerTable data={$scan.wappalyzergo} />;
+        return (
+          <div className="p-8 text-white">Wappalyzer Data Placeholder</div>
+        );
+      case "observatory":
+        // return <ObservatoryTable data={$scan.observatory} />;
+        return (
+          <div className="p-8 text-white">Observatory Data Placeholder</div>
+        );
+      default:
+        return null;
+    }
   }
 
   return (
     <section className="mx-auto mt-36 flex max-w-7xl flex-col justify-between px-4 pb-12 xs:px-6 md:px-8">
       <div className="flex justify-between">
         <button
-          className="w-fit bg-linear-to-br from-orange-400 to-accent px-6 py-2 text-5xl tracking-tighter"
-          onClick={() => {
-            handleOpenTable();
-          }}
+          className="w-fit bg-linear-to-br from-orange-400 to-accent px-6 py-2 text-5xl tracking-tighter text-white"
+          onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? "Close scan results" : "Show scan results"}
         </button>
-        <button
-          className="w-fit bg-linear-to-br from-orange-400 to-accent px-4 py-2 text-xl tracking-tighter"
-          onClick={() => {
-            handleDownloadJSON();
-          }}
-        >
+        <button className="w-fit bg-linear-to-br from-orange-400 to-accent px-4 py-2 text-xl tracking-tighter text-white">
           Download JSON
         </button>
       </div>
-      {/* if it's open then show the table */}
-      {isOpen && (
+
+      {isOpen && availableScanners.length > 0 && (
         <div
-          ref={tableRef}
-          className="relative h-screen bg-linear-to-b from-stone-950 to-stone-900"
+          ref={sectionRef}
+          className="relative mt-8 min-h-screen border-2 border-stone-800 bg-linear-to-b from-stone-950 to-stone-900 shadow-xl"
         >
-          {/* noise overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-[url('/noise.svg')] opacity-10"></div>
-          <VulnerabilityTable vulnerabilities={$scan.retire.vulnerabilities} />
+          {/* Sticky Tab Navigation */}
+          <div className="sticky top-0 z-50 flex w-full border-b-2 border-stone-800 bg-stone-950/90 backdrop-blur-md">
+            {availableScanners.map((scanner) => (
+              <button
+                key={scanner}
+                onClick={() => handleTabChange(scanner)}
+                className={`flex-1 px-6 py-4 text-sm font-bold tracking-wider uppercase transition-colors ${
+                  activeTab === scanner
+                    ? "border-b-2 border-orange-400 bg-stone-800 text-orange-400"
+                    : "text-stone-400 hover:bg-stone-900 hover:text-stone-200"
+                }`}
+              >
+                {scanner}
+              </button>
+            ))}
+          </div>
+
+          {/* Render the matching table component */}
+          <div className="w-full">{renderActiveTable()}</div>
         </div>
       )}
     </section>
   );
 }
+
+type key_of_scan = keyof NonNullable<typeof scan.value>;
 
 export default withStrictMode(ScanResultsSection);
