@@ -20,8 +20,8 @@ function ScannerForm() {
   const [sendEmail, setSendEmail] = useState(false);
   const [email, setEmail] = useState("");
   const [scanners, setScanners] = useState(SCANNERS);
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [apiKey, setApiKey] = useState("");
 
   async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
@@ -37,8 +37,8 @@ function ScannerForm() {
         email: email,
       },
       apiKey,
-      // username,
-      // password,
+      username,
+      password,
     );
     scan.set(scanResult);
   }
@@ -102,7 +102,7 @@ function ScannerForm() {
       <div className="mb-8">
         <p>Temporary stuff for debugging VPS</p>
         <div className="mb-4 flex w-full flex-col gap-2">
-          {/* <input
+          <input
             className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
             id="username"
             type="text"
@@ -119,7 +119,7 @@ function ScannerForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-          /> */}
+          />
           <input
             className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
             id="api-key"
