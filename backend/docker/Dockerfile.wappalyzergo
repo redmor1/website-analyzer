@@ -1,7 +1,30 @@
+# Build the Go application
 FROM golang:alpine AS builder
-RUN go install -v github.com/webklex/wappalyzer@main
 
+# Install git (required to fetch Go modules)
+RUN apk add --no-cache git
+
+WORKDIR /app
+
+# Initialize a new Go module
+RUN go mod init custom-wappalyzer
+
+# Download wappalyzergo library
+RUN go get github.com/projectdiscovery/wappalyzergo
+
+# Copy your script into the container
+COPY main.go .
+
+# Compile the script into an executable binary named "wappalyzergo"
+RUN go build -o wappalyzergo wappalyzer.go
+
+# Create the final lightweight container
 FROM alpine:latest
-# Rename the binary so the entrypoint matches your orchestrator naming
-COPY --from=builder /go/bin/wappalyzer /usr/local/bin/wappalyzergo
+
+# Install certificates so HTTPS requests work
+RUN apk add --no-cache ca-certificates
+
+# Copy the compiled binary from the builder stage
+COPY --from=builder /app/wappalyzergo /usr/local/bin/wappalyzergo
+
 ENTRYPOINT ["wappalyzergo"]

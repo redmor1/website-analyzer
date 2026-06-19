@@ -7,115 +7,84 @@ import {
   useReactTable,
   type SortingState,
 } from "@tanstack/react-table";
-import type {
-  RetireVulnerability,
-  RetireVulnerabilitySeverity,
-} from "@/types/types";
 import { withStrictMode } from "@/utils/withStrictMode";
-import { getSeverityWeights } from "@/utils/table-utils";
 import ArrowUp from "../icons/arrow-up";
 
-interface RetireTableProps {
-  vulnerabilities: RetireVulnerability[];
+// Update this import to match your actual types file if needed
+import type { ObservatoryTest } from "@/types/types";
+
+// Local interface for the flattened row data
+interface ObservatoryTestRow {
+  name: string;
+  pass: boolean;
+  scoreModifier: number;
+  result: string;
 }
 
-const severityStyles: Record<RetireVulnerabilitySeverity, string> = {
-  critical: "bg-red-500/10 text-red-400 border-red-500/20",
-  high: "bg-orange-500/10 text-orange-400 border-orange-500/20",
-  medium: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  low: "bg-stone-500/10 text-stone-400 border-stone-500/20",
-};
+interface ObservatoryTableProps {
+  tests: Record<string, ObservatoryTest>;
+}
 
-const columnHelper = createColumnHelper<RetireVulnerability>();
+const columnHelper = createColumnHelper<ObservatoryTestRow>();
 
 const columns = [
-  columnHelper.accessor("id", {
-    header: "Vulnerability ID",
-    cell: (info) => {
-      const vuln = info.row.original;
-      const hasReferences = vuln.references && vuln.references.length > 0;
-      const cveUrl = hasReferences ? vuln.references![0].source.url : null;
-      const id = info.getValue();
-
-      if (hasReferences && cveUrl) {
-        return (
-          <a
-            href={cveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex w-max items-center gap-1.5 transition-colors hover:text-orange-400"
-            title="View reference"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className="underline decoration-stone-600 underline-offset-4 group-hover:decoration-orange-400">
-              {id}
-            </span>
-            <svg
-              className="h-3.5 w-3.5 text-stone-500 transition-colors group-hover:text-orange-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
-        );
-      }
-      return id || "--";
-    },
+  columnHelper.accessor("name", {
+    header: "Test",
+    cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor((row) => row.ratings?.[0]?.severity || "low", {
-    id: "severity",
-    header: "Severity",
-    sortDescFirst: true,
-    sortingFn: (rowA, rowB) => {
-      const weightA = getSeverityWeights(rowA.original);
-      const weightB = getSeverityWeights(rowB.original);
-      return weightA - weightB;
-    },
-
+  columnHelper.accessor("pass", {
+    header: "Status",
     cell: (info) => {
-      const severity = info.getValue() as RetireVulnerabilitySeverity;
+      const pass = info.getValue();
       return (
         <span
-          className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold uppercase ${severityStyles[severity]}`}
+          className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold uppercase ${
+            pass
+              ? "border-green-500/20 bg-green-500/10 text-green-400"
+              : "border-red-500/20 bg-red-500/10 text-red-400"
+          }`}
         >
-          {severity}
+          {pass ? "Pass" : "Fail"}
         </span>
       );
     },
   }),
-  columnHelper.accessor("cwes", {
-    header: "CWE(s)",
-    enableSorting: false,
+  columnHelper.accessor("scoreModifier", {
+    header: "Penalty",
     cell: (info) => {
-      const cwes = info.getValue();
-      return cwes && cwes.length > 0
-        ? cwes.map((cwe) => `CWE-${cwe}`).join(", ")
-        : "--";
+      const modifier = info.getValue();
+      return modifier < 0 ? (
+        <span className="text-red-400">{modifier}</span>
+      ) : (
+        <span className="text-stone-600">0</span>
+      );
     },
   }),
-  columnHelper.accessor("description", {
-    header: "Description",
+  columnHelper.accessor("result", {
+    header: "Result",
     enableSorting: false,
     cell: (info) => info.getValue(),
   }),
 ];
 
-function RetireTable({ vulnerabilities }: RetireTableProps) {
+function ObservatoryTable({ tests }: ObservatoryTableProps) {
+  // Sort by penalty (scoreModifier) ascending by default to surface the worst issues first
   const [sorting, setSorting] = useState<SortingState>([
     {
-      id: "severity",
-      desc: true,
+      id: "scoreModifier",
+      desc: false,
     },
   ]);
 
-  const data = useMemo(() => vulnerabilities, [vulnerabilities]);
+  // Convert the tests object into an array of rows
+  const data = useMemo(() => {
+    return Object.entries(tests).map(([name, details]) => ({
+      name,
+      pass: details.pass,
+      scoreModifier: details.scoreModifier,
+      result: details.result,
+    }));
+  }, [tests]);
 
   const table = useReactTable({
     data,
@@ -175,11 +144,11 @@ function RetireTable({ vulnerabilities }: RetireTableProps) {
                     <td
                       key={cell.id}
                       className={
-                        cell.column.id === "description"
-                          ? "max-w-xl min-w-75 px-6 py-4 leading-relaxed text-stone-400"
-                          : cell.column.id === "cwes"
-                            ? "px-6 py-4 font-mono whitespace-nowrap text-stone-400"
-                            : "px-6 py-4 font-medium whitespace-nowrap text-stone-100"
+                        cell.column.id === "name" || cell.column.id === "result"
+                          ? "px-6 py-4 font-mono whitespace-nowrap text-stone-400"
+                          : cell.column.id === "scoreModifier"
+                            ? "px-6 py-4 text-sm font-medium whitespace-nowrap"
+                            : "px-6 py-4 whitespace-nowrap"
                       }
                     >
                       {flexRender(
@@ -196,7 +165,7 @@ function RetireTable({ vulnerabilities }: RetireTableProps) {
                   colSpan={columns.length}
                   className="px-6 py-12 text-center text-stone-500"
                 >
-                  No vulnerabilities detected. Your slop is clean.
+                  No test results available.
                 </td>
               </tr>
             )}
@@ -207,4 +176,4 @@ function RetireTable({ vulnerabilities }: RetireTableProps) {
   );
 }
 
-export default withStrictMode(RetireTable);
+export default withStrictMode(ObservatoryTable);

@@ -21,6 +21,8 @@ export async function runWappalyzergoScan(url: string) {
       "-json",
       "-output",
       `${containerFolder}/${JsonFilename}`,
+      "-type", // custom script for extended information
+      "info", // options are: "info", "cats", "title", or "basic"
     ]
 
     console.log(`Starting wappalyzergo scan for: ${url}`)

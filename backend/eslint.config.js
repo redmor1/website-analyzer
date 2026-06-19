@@ -2,7 +2,7 @@
 import node from "eslint-plugin-n"
 import { defineConfig } from "eslint/config"
 import eslint from "@eslint/js"
-import tseslint from "typescript-eslint"
+import tseslint, { parser } from "typescript-eslint"
 import perfectionist from "eslint-plugin-perfectionist"
 import sonarjs from "eslint-plugin-sonarjs"
 import promise from "eslint-plugin-promise"
@@ -17,6 +17,7 @@ export default defineConfig(
   tseslint.configs.stylisticTypeChecked,
   {
     languageOptions: {
+      parser,
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
