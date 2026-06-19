@@ -5,9 +5,7 @@ import { withStrictMode } from "@/utils/withStrictMode";
 import RetireTable from "./tables/retire-table";
 import type { RetireVulnerability } from "@/types/types";
 import { ObservatoryResults } from "./observatory-results";
-
-// import WappalyzerTable from "./wappalyzer-table";
-// import ObservatoryTable from "./observatory-table";
+import { downloadStoreAsJson } from "@/utils/download";
 
 function ScanResultsSection() {
   const $scan = useStore(scan);
@@ -63,7 +61,6 @@ function ScanResultsSection() {
           <div className="p-8 text-white">Wappalyzer Data Placeholder</div>
         );
       case "observatory":
-        // return <ObservatoryTable data={$scan.observatory} />;
         return <ObservatoryResults data={$scan.observatory} />;
       default:
         return null;
@@ -80,7 +77,7 @@ function ScanResultsSection() {
           >
             {isOpen ? "Close scan results" : "Show scan results"}
           </button>
-          <button className="w-fit bg-linear-to-br from-orange-400 to-accent px-4 py-2 text-xl tracking-tighter text-white">
+          <button onClick={() => downloadStoreAsJson("reports.json")} className="cursor-pointer w-fit bg-linear-to-br from-orange-400 to-accent px-4 py-2 text-xl tracking-tighter text-white">
             Download JSON
           </button>
         </div>
