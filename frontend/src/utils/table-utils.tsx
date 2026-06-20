@@ -1,11 +1,14 @@
-import type { RetireVulnerability, RetireVulnerabilitySeverity } from "@/types/types";
+import type {
+  RetireVulnerability,
+  RetireVulnerabilitySeverity,
+} from "@website-analyzer/shared";
 
 const severityWeights: Record<RetireVulnerabilitySeverity, number> = {
   critical: 4,
   high: 3,
   medium: 2,
-  low: 1
-}
+  low: 1,
+};
 
 export function getSeverityWeights(vulnerability: RetireVulnerability): number {
   const severity = vulnerability.ratings?.[0]?.severity;
@@ -16,6 +19,5 @@ export function getSeverityWeights(vulnerability: RetireVulnerability): number {
   }
 
   // if severity doesnt exist
-  return 0
-
+  return 0;
 }

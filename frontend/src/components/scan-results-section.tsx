@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useStore } from "@nanostores/react";
-import { scan } from "@/store/scanStore";
-import { withStrictMode } from "@/utils/withStrictMode";
-import RetireTable from "./tables/retire-table";
-import type { RetireVulnerability } from "@/types/types";
-import { ObservatoryResults } from "./observatory-results";
-import { downloadStoreAsJson } from "@/utils/download";
+import { scan } from "@frontend/store/scanStore";
+import { withStrictMode } from "@frontend/utils/withStrictMode";
+import { ObservatoryResults } from "@frontend/features/observatory/observatory-results";
+import { downloadStoreAsJson } from "@frontend/utils/download";
+import { RetireResults } from "@frontend/features/retire/retire-results";
 
 function ScanResultsSection() {
   const $scan = useStore(scan);
@@ -47,13 +46,7 @@ function ScanResultsSection() {
   function renderActiveTable() {
     switch (activeTab) {
       case "retire":
-        return (
-          <RetireTable
-            vulnerabilities={
-              $scan.retire.vulnerabilities as RetireVulnerability[]
-            }
-          />
-        );
+        return <RetireResults data={$scan.retire} />;
 
       case "wappalyzergo":
         // return <WappalyzerTable data={$scan.wappalyzergo} />;
@@ -77,7 +70,10 @@ function ScanResultsSection() {
           >
             {isOpen ? "Close scan results" : "Show scan results"}
           </button>
-          <button onClick={() => downloadStoreAsJson("reports.json")} className="cursor-pointer w-fit bg-linear-to-br from-orange-400 to-accent px-4 py-2 text-xl tracking-tighter text-white">
+          <button
+            onClick={() => downloadStoreAsJson("reports.json")}
+            className="w-fit cursor-pointer bg-linear-to-br from-orange-400 to-accent px-4 py-2 text-xl tracking-tighter text-white"
+          >
             Download JSON
           </button>
         </div>

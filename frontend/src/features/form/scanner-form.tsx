@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { scan } from "@/store/scanStore";
-import { postScan } from "@/api/postScan";
-import { withStrictMode } from "@/utils/withStrictMode";
+import { scan } from "@frontend/store/scanStore";
+import { postScan } from "@frontend/api/postScan";
+import { withStrictMode } from "@frontend/utils/withStrictMode";
 
 // TODO: link with zod types
 const SCANNERS = [

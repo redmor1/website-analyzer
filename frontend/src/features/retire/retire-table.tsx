@@ -10,10 +10,10 @@ import {
 import type {
   RetireVulnerability,
   RetireVulnerabilitySeverity,
-} from "@/types/types";
-import { withStrictMode } from "@/utils/withStrictMode";
-import { getSeverityWeights } from "@/utils/table-utils";
-import ArrowUp from "../icons/arrow-up";
+} from "@website-analyzer/shared";
+import { withStrictMode } from "@frontend/utils/withStrictMode";
+import { getSeverityWeights } from "@frontend/utils/table-utils";
+import ArrowUp from "@frontend/components/icons/arrow-up";
 
 interface RetireTableProps {
   vulnerabilities: RetireVulnerability[];
@@ -127,10 +127,10 @@ function RetireTable({ vulnerabilities }: RetireTableProps) {
   });
 
   return (
-    <div className="w-full overflow-hidden border-2 border-stone-800 bg-stone-900">
+    <div className="mt-6 w-full overflow-hidden border-2 border-stone-800 bg-stone-900">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm text-stone-300">
-          <thead className="border-b border-accent bg-linear-to-br from-orange-400 to-accent text-xs font-bold tracking-wide text-stone-50 uppercase">
+          <thead className="border-accent bg-linear-to-br from-orange-400 to-accent text-xs font-bold tracking-wide text-stone-50 uppercase">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (

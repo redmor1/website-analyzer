@@ -1,4 +1,4 @@
-import { scan } from "@/store/scanStore";
+import { scan } from "@frontend/store/scanStore";
 
 export function downloadStoreAsJson(filename = "reports.json") {
   const store = scan.get();

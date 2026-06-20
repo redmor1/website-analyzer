@@ -7,11 +7,9 @@ import {
   useReactTable,
   type SortingState,
 } from "@tanstack/react-table";
-import { withStrictMode } from "@/utils/withStrictMode";
-import ArrowUp from "../icons/arrow-up";
-
-// Update this import to match your actual types file if needed
-import type { ObservatoryTest } from "@/types/types";
+import { withStrictMode } from "@frontend/utils/withStrictMode";
+import ArrowUp from "@frontend/components/icons/arrow-up";
+import type { ObservatoryTest } from "@website-analyzer/shared";
 
 // Local interface for the flattened row data
 interface ObservatoryTestRow {
@@ -54,7 +52,7 @@ const columns = [
     cell: (info) => {
       const modifier = info.getValue();
       return modifier < 0 ? (
-        <span className="text-red-400">{modifier}</span>
+        <span className="text-red-500">{modifier}</span>
       ) : (
         <span className="text-stone-600">0</span>
       );
@@ -72,7 +70,7 @@ function ObservatoryTable({ tests }: ObservatoryTableProps) {
   const [sorting, setSorting] = useState<SortingState>([
     {
       id: "scoreModifier",
-      desc: false,
+      desc: true,
     },
   ]);
 
@@ -120,10 +118,11 @@ function ObservatoryTable({ tests }: ObservatoryTableProps) {
                             header.column.columnDef.header,
                             header.getContext(),
                           )}
-                      {header.column.getIsSorted() === "asc" && (
+
+                      {header.column.getIsSorted() === "desc" && (
                         <ArrowUp className="size-4" />
                       )}
-                      {header.column.getIsSorted() === "desc" && (
+                      {header.column.getIsSorted() === "asc" && (
                         <ArrowUp className="size-4 rotate-180" />
                       )}
                     </div>
@@ -144,11 +143,9 @@ function ObservatoryTable({ tests }: ObservatoryTableProps) {
                     <td
                       key={cell.id}
                       className={
-                        cell.column.id === "name" || cell.column.id === "result"
-                          ? "px-6 py-4 font-mono whitespace-nowrap text-stone-400"
-                          : cell.column.id === "scoreModifier"
-                            ? "px-6 py-4 text-sm font-medium whitespace-nowrap"
-                            : "px-6 py-4 whitespace-nowrap"
+                        cell.column.id === "name"
+                          ? "px-6 py-4 whitespace-nowrap text-stone-100"
+                          : "px-6 py-4 whitespace-nowrap text-stone-400"
                       }
                     >
                       {flexRender(
