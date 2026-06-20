@@ -91,7 +91,7 @@ function ScanResultsSection() {
                   onClick={() => handleTabChange(scanner)}
                   className={`flex-1 px-6 py-4 text-sm font-bold tracking-wider uppercase transition-colors ${
                     activeTab === scanner
-                      ? "border-b-2 border-orange-400 bg-stone-800 text-orange-400"
+                      ? "border-2 border-stone-400 bg-stone-800 text-stone-200"
                       : "text-stone-400 hover:bg-stone-900 hover:text-stone-200"
                   }`}
                 >

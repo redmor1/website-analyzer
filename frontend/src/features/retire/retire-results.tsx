@@ -119,9 +119,6 @@ export function RetireResults({ data }: { data: RetireData }) {
       )}
 
       <section>
-        <h2 className="mb-4 px-4 text-xl font-bold text-stone-100">
-          Vulnerabilities
-        </h2>
         <RetireTable vulnerabilities={data.vulnerabilities} />
       </section>
     </div>
