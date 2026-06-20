@@ -102,7 +102,7 @@ function ScannerForm() {
       <div className="mb-8">
         <p>Temporary stuff for debugging VPS</p>
         <div className="mb-4 flex w-full flex-col gap-2">
-          {/* <input
+          <input
             className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
             id="username"
             type="text"
@@ -119,7 +119,7 @@ function ScannerForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-          /> */}
+          />
           <input
             className="w-full border-2 border-stone-800 bg-stone-900 px-4 py-2"
             id="api-key"
