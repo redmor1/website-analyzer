@@ -7,6 +7,7 @@ import express from "express"
 import { config } from "./config.js"
 import { mergeReports, runScans } from "./features/orchestrator/orchestrator.js"
 import { validateTargetUrl } from "./utils/url-validation.js"
+import { checkApiKey } from "./middlewares/api-key.js"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
@@ -25,19 +26,16 @@ app.get("/", (request: Request, response: Response) => {
   console.log("Response sent")
 })
 
-app.post("/", jsonParser, async (request, response) => {
+app.post("/", jsonParser, checkApiKey, async (request, response) => {
   try {
     // Validate request shape
     const parsedRequest = scanRequestSchema.parse(request.body)
 
     // Deep validation for command injection & SSRF
-    // const safeUrl = await validateTargetUrl(parsedRequest.websiteUrl)
+    const safeUrl = await validateTargetUrl(parsedRequest.websiteUrl)
 
-    await runScans(parsedRequest.websiteUrl, parsedRequest.scanners)
-    const report = await mergeReports(
-      parsedRequest.websiteUrl,
-      parsedRequest.scanners,
-    )
+    await runScans(safeUrl, parsedRequest.scanners)
+    const report = await mergeReports(safeUrl, parsedRequest.scanners)
     console.log("Successfully merged reports. Sending response.")
     return response.status(200).send(report)
   } catch (error) {

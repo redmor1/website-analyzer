@@ -1,0 +1,2023 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "serialNumber": "urn:uuid:64a15a18-c239-42e4-964a-996db7e0f344",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-06-17T19:38:34.581Z",
+    "tools": [
+      {
+        "name": "retire-site-scanner",
+        "version": "1.7.3"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "https://cygnuscross.com/",
+      "version": "1781725137722",
+      "bom-ref": "82a3e1c1-4238-4512-b030-02307109e611"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+      "name": "nextjs",
+      "version": "14.2.23",
+      "purl": "pkg:npm/next@14.2.23",
+      "properties": [
+        {
+          "name": "foundIn",
+          "value": "https://www.cygnuscross.com/"
+        },
+        {
+          "name": "foundIn",
+          "value": "https://www.cygnuscross.com/_next/static/chunks/main-d042e3e27367d8b9.js"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "65ebcb36-1bdd-4b33-a91c-2cb0d064bdb8",
+      "name": "react-dom",
+      "version": "19.0.0",
+      "purl": "pkg:npm/react-dom@19.0.0",
+      "properties": [
+        {
+          "name": "foundIn",
+          "value": "https://www.cygnuscross.com/_next/static/chunks/framework-8d2b8906741ea470.js"
+        },
+        {
+          "name": "initiator",
+          "value": "https://www.cygnuscross.com/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+      "name": "axios",
+      "version": "1.7.9",
+      "purl": "pkg:npm/axios@1.7.9",
+      "properties": [
+        {
+          "name": "foundIn",
+          "value": "https://www.cygnuscross.com/_next/static/chunks/pages/_app-91588d162f087a90.js"
+        },
+        {
+          "name": "initiator",
+          "value": "https://www.cygnuscross.com/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "6a1495a8-5da9-4b79-8ad0-c327c94b834c",
+      "name": "moment.js",
+      "version": "2.30.1",
+      "purl": "pkg:npm/moment@2.30.1",
+      "properties": [
+        {
+          "name": "foundIn",
+          "value": "https://www.cygnuscross.com/_next/static/chunks/75fc9c18-9c4cd5d684bf046e.js"
+        },
+        {
+          "name": "initiator",
+          "value": "https://www.cygnuscross.com/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "82a3e1c1-4238-4512-b030-02307109e611",
+      "dependsOn": [
+        "1ce91156-100b-40df-a547-7eb1daf168be",
+        "65ebcb36-1bdd-4b33-a91c-2cb0d064bdb8",
+        "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+        "6a1495a8-5da9-4b79-8ad0-c327c94b834c"
+      ]
+    }
+  ],
+  "compositions": [
+    {
+      "aggregate": "unknown",
+      "assemblies": ["82a3e1c1-4238-4512-b030-02307109e611"]
+    }
+  ],
+  "services": [
+    {
+      "name": "typekit.net",
+      "endpoints": [
+        "https://use.typekit.net/af/7497cb/0000000000000000774b9a98/"
+      ],
+      "description": "Inbound: [application/font-woff2]."
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "bom-ref": "da7526fd-3d67-4a5f-aa45-fe430ac70d75",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-qpjv-v59x-3qc4"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-qpjv-v59x-3qc4"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-32421"
+        },
+        {
+          "url": "https://github.com/vercel/next.js"
+        },
+        {
+          "url": "https://vercel.com/changelog/cve-2025-32421"
+        }
+      ],
+      "id": "CVE-2025-32421",
+      "ratings": [
+        {
+          "severity": "low"
+        }
+      ],
+      "description": "Next.js Race Condition to Cache Poisoning",
+      "references": [
+        {
+          "id": "CVE-2025-32421",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-32421"
+          }
+        }
+      ],
+      "cwes": [362],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "dc410d03-ab1a-4a15-b674-b8995a03aa50",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-f82v-jwr5-mffw"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-f82v-jwr5-mffw"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-29927"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/52a078da3884efe6501613c7834a3d02a91676d2"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/5fd3ae8f8542677c6294f32d18022731eab6fe48"
+        },
+        {
+          "url": "https://github.com/vercel/next.js"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v12.3.5"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v13.5.9"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20250328-0002"
+        },
+        {
+          "url": "https://vercel.com/changelog/vercel-firewall-proactively-protects-against-vulnerability-with-middleware"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/03/23/3"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2025/03/23/4"
+        }
+      ],
+      "id": "CVE-2025-29927",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Authorization Bypass in Next.js Middleware",
+      "references": [
+        {
+          "id": "CVE-2025-29927",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-29927"
+          }
+        }
+      ],
+      "cwes": [285, 863],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "b0061349-191b-4252-8b75-97e05abee0b2",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-3h52-269p-cp9r"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-3h52-269p-cp9r"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-48068"
+        },
+        {
+          "url": "https://github.com/vercel/next.js"
+        },
+        {
+          "url": "https://vercel.com/changelog/cve-2025-48068"
+        }
+      ],
+      "id": "CVE-2025-48068",
+      "ratings": [
+        {
+          "severity": "low"
+        }
+      ],
+      "description": "Information exposure in Next.js dev server due to lack of origin verification",
+      "references": [
+        {
+          "id": "CVE-2025-48068",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-48068"
+          }
+        }
+      ],
+      "cwes": [1385],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "6f31cba7-0bc4-4823-a0dd-5c88fcfe43a1",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-g5qg-72qw-gw5v"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/pull/82114"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/6b12c60c61ee80cb0443ccd20de82ca9b4422ddd"
+        },
+        {
+          "url": "https://vercel.com/changelog/cve-2025-57752"
+        }
+      ],
+      "id": "CVE-2025-57752",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "A cache key confusion bug in Next.js Image Optimization (fixed in v15.4.5 and v14.2.31) caused images served from API routes that vary on request headers like Cookie or Authorization to be incorrectly cached and potentially served to unauthorized users.",
+      "references": [
+        {
+          "id": "CVE-2025-57752",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-57752"
+          }
+        }
+      ],
+      "cwes": [524],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "dfb361bf-76c7-4e11-9399-1fa3bf398bd1",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-xv57-4mr9-wg8v"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/6b12c60c61ee80cb0443ccd20de82ca9b4422ddd"
+        },
+        {
+          "url": "https://vercel.com/changelog/cve-2025-55173"
+        },
+        {
+          "url": "http://vercel.com/changelog/cve-2025-55173"
+        }
+      ],
+      "id": "CVE-2025-55173",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "A vulnerability in Next.js Image Optimization (fixed in v15.4.5 and v14.2.31) allowed attacker-controlled external image sources to trigger file downloads with arbitrary content and filenames, enabling phishing or malicious file delivery.",
+      "references": [
+        {
+          "id": "CVE-2025-55173",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55173"
+          }
+        }
+      ],
+      "cwes": [20],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "95d61e6b-363d-4c0f-bcff-c60db80c6d04",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-4342-x723-ch2f"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/9c9aaed5bb9338ef31b0517ccf0ab4414f2093d8"
+        },
+        {
+          "url": "https://vercel.com/changelog/cve-2025-57822"
+        }
+      ],
+      "id": "CVE-2025-57822",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "A Server-Side Request Forgery (SSRF) vulnerability in Next.js Middleware (fixed in v14.2.32 and v15.4.7) allowed sensitive request headers to be reflected back when passed directly into NextResponse.next() in self-hosted applications.",
+      "references": [
+        {
+          "id": "CVE-2025-57822",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-57822"
+          }
+        }
+      ],
+      "cwes": [918],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "6decc690-39cd-4720-a91a-a3f78972a660",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-mwv6-3258-q52c"
+        },
+        {
+          "url": "https://nextjs.org/blog/security-update-2025-12-11"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-55184"
+        }
+      ],
+      "id": "GHSA-mwv6-3258-q52c",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "A vulnerability in React Server Components (versions 19.0.0-19.2.1) and Next.js 15.x/16.x App Router allows a specially crafted HTTP request to cause the server process to hang and consume CPU during deserialization, resulting in Denial of Service.",
+      "cwes": [1395, 400, 502],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "f5f889c7-0cfa-4bec-9c2b-52ad51c8ee7a",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-5j59-xgg2-r9c4"
+        },
+        {
+          "url": "https://nextjs.org/blog/security-update-2025-12-11"
+        },
+        {
+          "url": "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2025-55184"
+        },
+        {
+          "url": "https://www.facebook.com/security/advisories/cve-2025-67779"
+        }
+      ],
+      "id": "GHSA-5j59-xgg2-r9c4",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "The fix for CVE-2025-55184 in React Server Components was incomplete. An incomplete patch in React 19.0.2, 19.1.3, and 19.2.2 and Next.js 13.x-16.x App Router allows a specially crafted HTTP request to Server Function endpoints to trigger an infinite loop, causing CPU exhaustion and Denial of Service.",
+      "cwes": [1395, 400, 502],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "6f68173a-8614-4b9a-8b99-fd5ea1b31437",
+      "advisories": [
+        {
+          "url": "https://github.com/facebook/react/security/advisories/GHSA-83fc-fqcc-2hmg"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-h25m-26qc-wcjf"
+        },
+        {
+          "url": "https://vercel.com/changelog/summary-of-cve-2026-23864"
+        }
+      ],
+      "id": "GHSA-h25m-26qc-wcjf",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "A vulnerability in React Server Components packages (versions 19.0.x-19.2.x) and Next.js 13.x-16.x App Router allows a specially crafted HTTP request to Server Function endpoints to trigger excessive CPU usage, out-of-memory exceptions, or server crashes, resulting in Denial of Service.",
+      "cwes": [400, 502],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "8aac8dff-bc74-4156-b7b2-eb33752f4fa4",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-9g9p-9gw9-jx7f"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/500ec83743639addceaede95e95913398975156c"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/e5b834d208fe0edf64aa26b5d76dcf6a176500ec"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.10"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.1.5"
+        }
+      ],
+      "id": "CVE-2025-59471",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "A Denial of Service vulnerability exists in self-hosted Next.js applications with remotePatterns configured for the Image Optimizer. The /_next/image endpoint loads external images entirely into memory without a size limit, allowing an attacker to exhaust server memory by requesting optimization of arbitrarily large images from allowed domains.",
+      "references": [
+        {
+          "id": "CVE-2025-59471",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-59471"
+          }
+        }
+      ],
+      "cwes": [400, 770],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "79c6cc9e-4ec0-4f03-9e04-97b7054f8d7e",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-ggv3-7p47-pfv8"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/dc98c04f376c6a1df76ec3e0a2d07edf4abdabd6"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.13"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.1.7"
+        }
+      ],
+      "id": "CVE-2026-29057",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Next.js is vulnerable to HTTP request smuggling when proxying traffic through rewrites. A crafted DELETE or OPTIONS request using Transfer-Encoding: chunked can trigger request boundary disagreement between the Next.js proxy and the backend, allowing an attacker to smuggle requests to unintended backend routes including internal or admin endpoints.",
+      "references": [
+        {
+          "id": "CVE-2026-29057",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-29057"
+          }
+        }
+      ],
+      "cwes": [444],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "f52ccf19-c4b5-47fd-979d-a45f567329a5",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-3x4c-7xq6-9pq8"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/commit/39eb8e0ac498b48855a0430fbf4c22276a73b4bd"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.1.7"
+        }
+      ],
+      "id": "CVE-2026-27980",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "The Next.js image optimization disk cache had no configurable upper bound, allowing unbounded growth. An attacker could generate many unique image optimization variants to exhaust disk space and cause Denial of Service, fixed by adding an LRU-backed disk cache with configurable maximum size.",
+      "references": [
+        {
+          "id": "CVE-2026-27980",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-27980"
+          }
+        }
+      ],
+      "cwes": [400],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "53dd12f1-d814-4f56-9ce8-0c142c5b5232",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-q4gf-8mx6-v5v3"
+        },
+        {
+          "url": "https://vercel.com/changelog/summary-of-cve-2026-23869"
+        }
+      ],
+      "id": "GHSA-q4gf-8mx6-v5v3",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "A vulnerability in React Server Components (version 19.x) and Next.js 13.x-16.x App Router allows a specially crafted HTTP request to Server Function endpoints to trigger excessive CPU usage, resulting in Denial of Service.",
+      "cwes": [770],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "e243a2b0-b43f-4bb2-a9f0-4f85e3b441c9",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-h64f-5h5j-jqjh"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44577",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Self-hosted Next.js applications are vulnerable to Denial of Service via the Image Optimization API for local images. The /_next/image endpoint fetches local images entirely into memory without enforcing a maximum response size, allowing an attacker to cause out-of-memory conditions by requesting large local assets matching the configured localPatterns.",
+      "references": [
+        {
+          "id": "CVE-2026-44577",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44577"
+          }
+        }
+      ],
+      "cwes": [770],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "f7248143-00c3-4c72-bcb3-d7ff40bab872",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-36qx-fr4f-26g5"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44573",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Next.js Pages Router applications with i18n configured are vulnerable to middleware authorization bypass. Locale-less /_next/data/<buildId>/<page>.json requests do not trigger middleware execution, allowing attackers to retrieve server-side rendered JSON for protected pages without passing authorization checks.",
+      "references": [
+        {
+          "id": "CVE-2026-44573",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44573"
+          }
+        }
+      ],
+      "cwes": [863],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "ddfcb3d5-768c-4251-90f4-d83c495d4be3",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-3g8h-86w9-wvmq"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44572",
+      "ratings": [
+        {
+          "severity": "low"
+        }
+      ],
+      "description": "Next.js is vulnerable to cache poisoning and Denial of Service via the x-nextjs-data request header. An external client sending this header on a request to a redirect-returning middleware path causes the standard Location header to be replaced with the internal x-nextjs-redirect header, which browsers do not follow; if a CDN caches the malformed response, all subsequent visitors to that path receive a broken redirect.",
+      "references": [
+        {
+          "id": "CVE-2026-44572",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44572"
+          }
+        }
+      ],
+      "cwes": [349],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "108bf065-025b-4636-ab22-ee1ef517410d",
+      "advisories": [
+        {
+          "url": "https://github.com/facebook/react/security/advisories/GHSA-rv78-f8rc-xrxh"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-8h8q-6873-q5fj"
+        },
+        {
+          "url": "https://github.com/vitejs/vite-plugin-react/security/advisories/GHSA-w94c-4vhp-22gx"
+        }
+      ],
+      "id": "GHSA-8h8q-6873-q5fj",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "A vulnerability in React Server Components (version 19.x) and Next.js 13.x-16.x App Router allows a specially crafted HTTP request to Server Function endpoints to trigger excessive CPU usage, resulting in Denial of Service.",
+      "cwes": [770],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "835ab532-0781-4946-b387-6aa769f89fd0",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-gx5p-jg67-6x7h"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44580",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Next.js is vulnerable to Cross-Site Scripting when beforeInteractive scripts are used with untrusted content. Serialized script content was not HTML-escaped before embedding into the document, allowing attacker-controlled input to break out of the inline script context and execute arbitrary JavaScript in visitors' browsers.",
+      "references": [
+        {
+          "id": "CVE-2026-44580",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44580"
+          }
+        }
+      ],
+      "cwes": [79],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "819146c8-0023-41ae-b01a-82081ea987b0",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-ffhc-5mcf-pf4q"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44581",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Next.js App Router applications using CSP nonces are vulnerable to stored Cross-Site Scripting when deployed behind shared caches. Malformed nonce values derived from request headers can be reflected into rendered HTML unsafely, allowing cache poisoning that causes script execution for subsequent visitors.",
+      "references": [
+        {
+          "id": "CVE-2026-44581",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44581"
+          }
+        }
+      ],
+      "cwes": [79],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "7a9a5277-6a13-4e99-a5bf-1f5c5fc126e3",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-vfv6-92ff-j949"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44582",
+      "ratings": [
+        {
+          "severity": "low"
+        }
+      ],
+      "description": "React Server Component responses in Next.js are vulnerable to cache poisoning when deployed with shared caches that have insufficient response partitioning. Collisions in the _rsc cache-busting value can allow an attacker to poison cache entries so users receive incorrect response variants for given URLs.",
+      "references": [
+        {
+          "id": "CVE-2026-44582",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44582"
+          }
+        }
+      ],
+      "cwes": [328],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "0681638c-e845-4766-b36d-b1f4246a3a51",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-c4j6-fc7j-m34r"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44578",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Self-hosted Next.js applications are vulnerable to Server-Side Request Forgery (SSRF) via crafted WebSocket upgrade requests. An attacker can cause the built-in Node.js server to proxy WebSocket connections to arbitrary internal or external destinations, potentially exposing internal services or cloud metadata endpoints.",
+      "references": [
+        {
+          "id": "CVE-2026-44578",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44578"
+          }
+        }
+      ],
+      "cwes": [918],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "9e246983-45b9-4de9-943c-a9279ec6e220",
+      "advisories": [
+        {
+          "url": "https://github.com/vercel/next.js/security/advisories/GHSA-wfc6-r584-vfw7"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v15.5.16"
+        },
+        {
+          "url": "https://github.com/vercel/next.js/releases/tag/v16.2.5"
+        }
+      ],
+      "id": "CVE-2026-44576",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Next.js App Router applications using React Server Components are vulnerable to cache poisoning when shared caches do not correctly partition response variants. An attacker can cause RSC payloads to be served from the original URL and poison shared cache entries so subsequent visitors receive component payloads instead of the expected HTML.",
+      "references": [
+        {
+          "id": "CVE-2026-44576",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44576"
+          }
+        }
+      ],
+      "cwes": [436],
+      "affects": [
+        {
+          "ref": "1ce91156-100b-40df-a547-7eb1daf168be",
+          "versions": [
+            {
+              "version": "14.2.23"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "c29538b0-9359-41c8-8096-416f8173f4e9",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-jr5f-v2jv-69x6"
+        },
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-jr5f-v2jv-69x6"
+        },
+        {
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-27152"
+        },
+        {
+          "url": "https://github.com/axios/axios/issues/6463"
+        },
+        {
+          "url": "https://github.com/axios/axios/commit/fb8eec214ce7744b5ca787f2c3b8339b2f54b00f"
+        },
+        {
+          "url": "https://github.com/axios/axios"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.8.2"
+        }
+      ],
+      "id": "CVE-2025-27152",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL",
+      "references": [
+        {
+          "id": "CVE-2025-27152",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-27152"
+          }
+        }
+      ],
+      "cwes": [918],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "00a2b66e-56ab-40fb-aa14-fe8192c8370e",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-4hjh-wcwx-xvwj"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/7011"
+        },
+        {
+          "url": "https://github.com/axios/axios/commit/945435fc51467303768202250debb8d4ae892593"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.12.0"
+        }
+      ],
+      "id": "CVE-2025-58754",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "When Axios runs on Node.js and is given a data: scheme URL, it decodes the entire payload into memory and returns a synthetic 200 response, ignoring maxContentLength and maxBodyLength limits. An attacker can supply a very large data: URI to cause unbounded memory allocation and crash the process, constituting a Denial of Service.",
+      "references": [
+        {
+          "id": "CVE-2025-58754",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-58754"
+          }
+        }
+      ],
+      "cwes": [770],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "bd31e3a6-a5fb-4738-97a4-01bd9544a1c1",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-43fc-jf86-j433"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/7369"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/7388"
+        },
+        {
+          "url": "https://github.com/axios/axios/commit/28c721588c7a77e7503d0a434e016f852c597b57"
+        },
+        {
+          "url": "https://github.com/axios/axios/commit/d7ff1409c68168d3057fc3891f911b2b92616f9e"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v0.30.3"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.13.5"
+        }
+      ],
+      "id": "CVE-2026-25639",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "The mergeConfig function in axios crashes with a TypeError when processing configuration objects containing __proto__ as an own property, such as those created via JSON.parse. An attacker who can pass a JSON payload with __proto__ as a config key can trigger a complete Denial of Service.",
+      "references": [
+        {
+          "id": "CVE-2026-25639",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-25639"
+          }
+        }
+      ],
+      "cwes": [1321, 754],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "a51e817e-4e17-4735-bad4-dbbc0437fd4e",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-3p68-rc4w-qgx5"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/10661"
+        },
+        {
+          "url": "https://github.com/axios/axios/commit/fb3befb6daac6cad26b2e54094d0f2d9e47f24df"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc1034#section-3.1"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc3986#section-3.2.2"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.15.0"
+        }
+      ],
+      "id": "CVE-2025-62718",
+      "ratings": [
+        {
+          "severity": "critical"
+        }
+      ],
+      "description": "Axios does not correctly normalize hostnames when checking NO_PROXY rules, causing requests to loopback addresses with a trailing dot (localhost.) or IPv6 literals ([::1]) to bypass NO_PROXY matching and be routed through the configured proxy. Attackers controlling request URLs can exploit this to bypass SSRF mitigations and reach sensitive loopback or internal services.",
+      "references": [
+        {
+          "id": "CVE-2025-62718",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-62718"
+          }
+        }
+      ],
+      "cwes": [441, 918],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "01950d3d-eefd-4bcf-bf73-32c003ba2f86",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-fvcv-3m26-pcqx"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/10660"
+        },
+        {
+          "url": "https://github.com/axios/axios/commit/363185461b90b1b78845dc8a99a1f103d9b122a1"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.15.0"
+        }
+      ],
+      "id": "CVE-2026-40175",
+      "ratings": [
+        {
+          "severity": "critical"
+        }
+      ],
+      "description": "Axios is vulnerable to being used as a gadget in a prototype pollution attack chain: when Object.prototype is polluted with CRLF-containing header values via another dependency, Axios merges the polluted properties into request headers without sanitization. This allows HTTP request smuggling attacks including bypassing AWS IMDSv2 session token requirements to steal cloud credentials.",
+      "references": [
+        {
+          "id": "CVE-2026-40175",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-40175"
+          }
+        }
+      ],
+      "cwes": [113, 444, 918],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "65e3962c-47e3-4403-8ce7-775725a3ad1d",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-445q-vr5w-6q77"
+        }
+      ],
+      "id": "CVE-2026-42037",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Axios is vulnerable to CRLF injection via the Content-Type header in multipart form-data requests. When constructing per-part headers for binary or Blob-like values, value.type is interpolated without sanitizing CRLF sequences, allowing an attacker who controls the MIME type of an uploaded file to inject arbitrary headers into the multipart body.",
+      "references": [
+        {
+          "id": "CVE-2026-42037",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42037"
+          }
+        }
+      ],
+      "cwes": [93],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "a7833e08-53e4-45ef-b4df-a6c7be9e85c9",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-5c9x-8gcm-mpgx"
+        }
+      ],
+      "id": "CVE-2026-42034",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Axios does not enforce maxBodyLength for stream request bodies when maxRedirects is set to 0, because the native HTTP transport path used in that configuration does not perform byte counting. Oversized streamed uploads are sent in full despite the configured body size limit, enabling uncontrolled upstream data transfer and potential resource exhaustion.",
+      "references": [
+        {
+          "id": "CVE-2026-42034",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42034"
+          }
+        }
+      ],
+      "cwes": [770],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "c48f6f72-c050-43e9-ba62-b2c25afc3a04",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-62hf-57xw-28j9"
+        }
+      ],
+      "id": "CVE-2026-42039",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "The toFormData helper in Axios recursively walks nested objects without a depth limit or try/catch protection. An attacker who can provide a deeply nested object as request data or params can trigger a stack overflow, crashing the Node.js request handler or process.",
+      "references": [
+        {
+          "id": "CVE-2026-42039",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42039"
+          }
+        }
+      ],
+      "cwes": [674],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "0a6c9f58-398d-4cf9-a52c-20d48657d695",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-6chq-wfr3-2hj9"
+        }
+      ],
+      "id": "CVE-2026-42035",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios is vulnerable to a prototype pollution gadget that allows header injection in the Node.js HTTP adapter. When Object.prototype is polluted with duck-typed FormData properties including getHeaders, Axios treats any plain object payload as a FormData instance and calls the attacker-controlled getHeaders() function, merging arbitrary headers into the outgoing request.",
+      "references": [
+        {
+          "id": "CVE-2026-42035",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42035"
+          }
+        }
+      ],
+      "cwes": [113, 1321],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "bb8e8580-c47c-4aa2-a7f1-2c2cb54ca91f",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-m7pr-hjqh-92cm"
+        }
+      ],
+      "id": "CVE-2026-42038",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "The fix for the NO_PROXY hostname normalization bypass (GHSA-3p68-rc4w-qgx5) is incomplete: shouldBypassProxy() does not resolve loopback address equivalents. When NO_PROXY=localhost is set, requests to 127.0.0.1 and [::1] are still routed through the configured proxy, enabling SSRF bypasses against internal services.",
+      "references": [
+        {
+          "id": "CVE-2026-42038",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42038"
+          }
+        }
+      ],
+      "cwes": [918],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "62ceba0b-78aa-446c-bf37-fd900f0fc61f",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-pf86-5x62-jrwf"
+        }
+      ],
+      "id": "CVE-2026-42033",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios has multiple prototype pollution gadgets where config properties are read without hasOwnProperty guards. When Object.prototype is polluted by a co-dependency, an attacker can silently intercept and modify every JSON response (parseReviver gadget) or fully hijack the underlying HTTP transport to intercept credentials and headers (transport gadget).",
+      "references": [
+        {
+          "id": "CVE-2026-42033",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42033"
+          }
+        }
+      ],
+      "cwes": [1321],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "a288dea2-9396-4755-84c1-bc2ffad2dfdd",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-pmwg-cvhr-8vh7"
+        }
+      ],
+      "id": "CVE-2026-42043",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "The Axios 1.15.0 patch for NO_PROXY hostname normalization is incomplete: the isLoopback() function only recognizes three specific addresses (localhost, 127.0.0.1, ::1) but not the full RFC 1122 loopback subnet 127.0.0.0/8. Requests to any 127.x.x.x address other than 127.0.0.1 bypass NO_PROXY matching and are routed through the configured proxy, enabling SSRF.",
+      "references": [
+        {
+          "id": "CVE-2026-42043",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42043"
+          }
+        }
+      ],
+      "cwes": [183, 441, 918],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "1ceb2a30-9509-4847-875d-989cfd9cddf3",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-vf2m-468p-8v99"
+        }
+      ],
+      "id": "CVE-2026-42036",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Axios does not enforce maxContentLength when responseType is set to 'stream'. The response stream is returned directly without byte-counting, allowing unbounded downstream consumption of arbitrarily large server responses despite the configured limit.",
+      "references": [
+        {
+          "id": "CVE-2026-42036",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42036"
+          }
+        }
+      ],
+      "cwes": [770],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "a6439bba-4e9d-4709-a600-46c6057c06dc",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-w9j2-pvgh-6h63"
+        }
+      ],
+      "id": "CVE-2026-42041",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Axios is vulnerable to a prototype pollution gadget via the validateStatus config property, which uniquely uses the JavaScript in operator (which traverses the prototype chain) during config merging. When Object.prototype.validateStatus is polluted with () => true, all HTTP error responses (401, 403, 500, etc.) are silently treated as successes, bypassing authentication and error handling.",
+      "references": [
+        {
+          "id": "CVE-2026-42041",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42041"
+          }
+        }
+      ],
+      "cwes": [1321, 287],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "72f47351-82f0-4123-b408-8f7efc32168b",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-xhjh-pmcv-23jw"
+        }
+      ],
+      "id": "CVE-2026-42040",
+      "ratings": [
+        {
+          "severity": "low"
+        }
+      ],
+      "description": "The encode() function in Axios's AxiosURLSearchParams helper contains a character map entry that reverses the safe percent-encoding of null bytes: '%00' is mapped back to a raw null byte '\\x00' after encodeURIComponent has correctly encoded it. Applications using AxiosURLSearchParams directly without an external encoder will produce URLs containing raw null bytes, which can cause truncation or WAF bypass in downstream C-based parsers.",
+      "references": [
+        {
+          "id": "CVE-2026-42040",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42040"
+          }
+        }
+      ],
+      "cwes": [116, 626],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "c4bfdb24-2110-4ec4-8ae5-ebd8896cf9b1",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-xx6v-rp6x-q39c"
+        }
+      ],
+      "id": "CVE-2026-42042",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Axios's XSRF token protection uses truthy/falsy semantics rather than strict boolean comparison for the withXSRFToken config property. When Object.prototype is polluted with any truthy non-boolean value for withXSRFToken, the same-origin check is bypassed and the XSRF token is sent to all cross-origin destinations, enabling CSRF attacks after token theft.",
+      "references": [
+        {
+          "id": "CVE-2026-42042",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42042"
+          }
+        }
+      ],
+      "cwes": [183, 201],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "596b3f42-2e1c-4938-91fb-807ca079054c",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-3g43-6gmg-66jw"
+        }
+      ],
+      "id": "CVE-2026-44495",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios contains prototype pollution gadgets in request config processing; a polluted Object.prototype.transformResponse can be executed with access to request credentials and response data, enabling credential theft and response hijacking across all requests.",
+      "references": [
+        {
+          "id": "CVE-2026-44495",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44495"
+          }
+        }
+      ],
+      "cwes": [94, 1321],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "6525070a-c11a-4c74-aa5a-cef0b4c15f3f",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-3w6x-2g7m-8v23"
+        }
+      ],
+      "id": "CVE-2026-42044",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Axios is vulnerable to a prototype pollution gadget via the parseReviver configuration property. When Object.prototype.parseReviver is polluted, Axios uses the attacker-controlled function as a JSON.parse reviver on every response, enabling silent selective modification of JSON values (e.g. privilege escalation) and exfiltration of all response data including API keys.",
+      "references": [
+        {
+          "id": "CVE-2026-42044",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42044"
+          }
+        }
+      ],
+      "cwes": [1321, 915],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "099d6f1b-5bad-48b5-a82e-a964163771b1",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-q8qp-cvcw-x6jj"
+        }
+      ],
+      "id": "CVE-2026-42264",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios has five config properties (auth, baseURL, socketPath, beforeRedirect, insecureHTTPParser) that are read from the merged config object without hasOwnProperty guards, making them exploitable as prototype pollution gadgets. When Object.prototype is polluted, these properties enable credential injection, request hijacking to attacker-controlled servers, SSRF via Unix sockets, and arbitrary code execution via redirect callbacks.",
+      "references": [
+        {
+          "id": "CVE-2026-42264",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42264"
+          }
+        }
+      ],
+      "cwes": [1321],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "016d1cca-2bbd-48e4-ba6e-61e1cbf15d4d",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-35jp-ww65-95wh"
+        }
+      ],
+      "id": "CVE-2026-44494",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios is vulnerable to a prototype pollution gadget attack where a polluted Object.prototype.proxy causes all HTTP requests to be routed through an attacker-controlled proxy, enabling full man-in-the-middle attacks including credential interception.",
+      "references": [
+        {
+          "id": "CVE-2026-44494",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44494"
+          }
+        }
+      ],
+      "cwes": [441, 1321],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "8d2e58c5-50e1-4ebb-abbd-1d6dd937cb86",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-898c-q2cr-xwhg"
+        }
+      ],
+      "id": "CVE-2026-44490",
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "description": "Axios 1.15.2 exposes two prototype pollution gadgets: HTTP header injection via utils.merge() building plain objects that walk the prototype chain, and a crash DoS where a polluted Object.prototype.get or .set causes TypeError on every axios request.",
+      "references": [
+        {
+          "id": "CVE-2026-44490",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44490"
+          }
+        }
+      ],
+      "cwes": [1321],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "e75b8790-1c5a-40d5-b567-ae9d34a4c38e",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-hfxv-24rg-xrqf"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v0.32.0"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.16.0"
+        }
+      ],
+      "id": "CVE-2026-44496",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection",
+      "references": [
+        {
+          "id": "CVE-2026-44496",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44496"
+          }
+        }
+      ],
+      "cwes": [400, 1333],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "6155b06c-a8b4-4173-8315-08c6b8534f6a",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-j5f8-grm9-p9fc"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/10794"
+        },
+        {
+          "url": "https://github.com/axios/axios/commit/afca61a070728e717203c2bc21e7b589b59b858b"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v0.32.0"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.16.0"
+        }
+      ],
+      "id": "CVE-2026-44486",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection",
+      "references": [
+        {
+          "id": "CVE-2026-44486",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44486"
+          }
+        }
+      ],
+      "cwes": [200],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "1969514c-e49d-4d87-bc32-9519b8704d08",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-p92q-9vqr-4j8v"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v0.32.0"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.16.0"
+        }
+      ],
+      "id": "CVE-2026-44487",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter",
+      "references": [
+        {
+          "id": "CVE-2026-44487",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44487"
+          }
+        }
+      ],
+      "cwes": [201],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "9fca5ba8-1e2b-46f5-a94f-73b0a9a7e04c",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-pjwm-pj3p-43mv"
+        }
+      ],
+      "id": "CVE-2026-44492",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "The shouldBypassProxy function introduced in Axios 1.15.0 does not normalize IPv4-mapped IPv6 addresses, allowing bypass of NO_PROXY exclusions when requests use IPv4-mapped IPv6 notation to target excluded IPv4 addresses.",
+      "references": [
+        {
+          "id": "CVE-2026-44492",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44492"
+          }
+        }
+      ],
+      "cwes": [918],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bom-ref": "16f016e9-191e-4fe0-b3f1-6a774185ed60",
+      "advisories": [
+        {
+          "url": "https://github.com/axios/axios/security/advisories/GHSA-777c-7fjr-54vf"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/10795"
+        },
+        {
+          "url": "https://github.com/axios/axios/pull/10796"
+        },
+        {
+          "url": "https://github.com/axios/axios/releases/tag/v1.16.0"
+        }
+      ],
+      "id": "CVE-2026-44488",
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "Allocation of Resources Without Limits or Throttling in Axios",
+      "references": [
+        {
+          "id": "CVE-2026-44488",
+          "source": {
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44488"
+          }
+        }
+      ],
+      "cwes": [770],
+      "affects": [
+        {
+          "ref": "8ad087d4-94b1-4e85-b901-48feb53ce52b",
+          "versions": [
+            {
+              "version": "1.7.9"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

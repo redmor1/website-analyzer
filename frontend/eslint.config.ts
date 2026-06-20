@@ -7,16 +7,32 @@ import jsxA11y from "eslint-plugin-jsx-a11y";
 import reactHooks from "eslint-plugin-react-hooks";
 
 export default defineConfig([
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...eslintPluginAstro.configs.recommended,
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,tsx,jsx}"],
-    plugins: { js },
-    extends: ["js/recommended"],
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: globals.browser,
+      parser: tseslint.parser,
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
   },
-  tseslint.configs.recommended,
-  eslintPluginAstro.configs.recommended,
   {
-    // Restrict JSX A11y rules to these file extensions
+    files: ["**/*.astro"],
+    languageOptions: {
+      parserOptions: {
+        parser: tseslint.parser,
+        project: true,
+        extraFileExtensions: [".astro"],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
     files: ["**/*.{jsx,tsx,astro}"],
     ...jsxA11y.flatConfigs.recommended,
   },
